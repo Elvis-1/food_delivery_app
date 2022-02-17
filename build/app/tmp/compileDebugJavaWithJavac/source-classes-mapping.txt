@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/dbestech/food_delivery/BuildConfig.java
+ com.dbestech.food_delivery.BuildConfig
