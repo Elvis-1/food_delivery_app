@@ -19,6 +19,12 @@ class PopuparFoodDetail extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage('assets/image/food0.png'))),
+              )),
+          Positioned(
+              left: Dimension.width20,
+              right: Dimension.width20,
+              child: Row(
+                children: [],
               ))
         ],
       ),
