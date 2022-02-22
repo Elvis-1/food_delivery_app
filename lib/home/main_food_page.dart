@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/home/food_page_body.dart';
 import 'package:food_delivery/utils/colors.dart';
+import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 
@@ -14,14 +15,19 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    print('This is screen height ' +
+        MediaQuery.of(context).size.height.toString());
+    print(
+        'This is screen width ' + MediaQuery.of(context).size.width.toString());
     return Scaffold(
         body: Column(
       children: [
         // showing the header
         Container(
           child: Container(
-            margin: EdgeInsets.only(top: 45, bottom: 45),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            margin: EdgeInsets.only(
+                top: Dimension.height45, bottom: Dimension.height15),
+            padding: EdgeInsets.symmetric(horizontal: Dimension.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -45,8 +51,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 ),
                 Center(
                   child: Container(
-                    width: 45,
-                    height: 45,
+                    width: Dimension.height45,
+                    height: Dimension.height45,
                     child: Icon(
                       Icons.search,
                       color: Colors.white,
@@ -63,7 +69,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
         ),
 
         // showing the body
-        FoodPageBody(),
+        Expanded(
+            child: SingleChildScrollView(
+          child: FoodPageBody(),
+        )),
       ],
     ));
   }
