@@ -282,7 +282,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       height: Dimension.height20,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconAndTextWidget(
                             icon: Icons.circle_sharp,
