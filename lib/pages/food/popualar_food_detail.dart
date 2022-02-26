@@ -4,6 +4,7 @@ import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 
@@ -66,10 +67,18 @@ class PopuparFoodDetail extends StatelessWidget {
                         height: Dimension.height20,
                       ),
                       BigText(text: 'Introduce'),
+                      SizedBox(
+                        height: Dimension.height20,
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: ExpandableTextWidget(
+                              text:
+                                  'God is good to me, God is good to me God is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me'),
+                        ),
+                      ),
                     ],
                   )))
-
-          // expandable text widget
         ],
       ),
       bottomNavigationBar: Container(
