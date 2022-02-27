@@ -69,21 +69,98 @@ class RecommendedFoodDetail extends StatelessWidget {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AppIcon(
-                icon: Icons.remove,
-                backgroungColor: AppColors.mainColor,
-                iconColor: Colors.white,
-              ),
-              AppIcon(
-                icon: Icons.add,
-                backgroungColor: AppColors.mainColor,
-                iconColor: Colors.white,
-              ),
-            ],
-          )
+          Container(
+            padding: EdgeInsets.only(
+                right: Dimension.width20 * 2.5,
+                left: Dimension.width20 * 2.5,
+                top: Dimension.height10,
+                bottom: Dimension.height10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppIcon(
+                  icon: Icons.remove,
+                  backgroungColor: AppColors.mainColor,
+                  iconColor: Colors.white,
+                  iconSize: Dimension.iconSize24,
+                ),
+                BigText(
+                  text: '\$12.88 ' + ' X ' + ' 0 ',
+                  color: AppColors.mainBlackColor,
+                  size: Dimension.font26,
+                ),
+                AppIcon(
+                  iconSize: Dimension.iconSize24,
+                  icon: Icons.add,
+                  backgroungColor: AppColors.mainColor,
+                  iconColor: Colors.white,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: Dimension.bottomHeightBar,
+            padding: EdgeInsets.only(
+                top: Dimension.height30,
+                bottom: Dimension.height30,
+                right: Dimension.width20,
+                left: Dimension.width20),
+            decoration: BoxDecoration(
+              color: AppColors.buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(Dimension.radius20 * 2),
+                  topLeft: Radius.circular(Dimension.radius20 * 2)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimension.height20,
+                      bottom: Dimension.height20,
+                      right: Dimension.width20,
+                      left: Dimension.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.remove,
+                        color: AppColors.signColor,
+                      ),
+                      SizedBox(
+                        width: Dimension.width10 / 2,
+                      ),
+                      BigText(text: '0'),
+                      SizedBox(
+                        width: Dimension.width10 / 2,
+                      ),
+                      Icon(
+                        Icons.add,
+                        color: AppColors.signColor,
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                    padding: EdgeInsets.only(
+                        top: Dimension.height20,
+                        bottom: Dimension.height20,
+                        right: Dimension.width20,
+                        left: Dimension.width20),
+                    child: BigText(
+                      text: "\$10 | Add to cart",
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.mainColor,
+                      borderRadius: BorderRadius.circular(Dimension.radius20),
+                    )),
+              ],
+            ),
+          ),
         ],
       ),
     );
