@@ -21,6 +21,8 @@ class PopularProductController extends GetxController {
   int _inCartItems = 0;
 
   int get inCartItems => _inCartItems + _quantity;
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.GetPopularProductList();
@@ -48,6 +50,7 @@ class PopularProductController extends GetxController {
       });
       // print(_popularProductList);
       // print('empty' + _popularProductList.last.name!);
+      _isLoaded = true;
       update();
       print('Working');
     } else {

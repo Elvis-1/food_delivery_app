@@ -20,6 +20,8 @@ class RecommendedFoodController extends GetxController {
   int get quantity => _quantity;
 
   int _inCartItems = 0;
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
 
   int get inCartItems => _inCartItems + _quantity;
 
@@ -49,6 +51,7 @@ class RecommendedFoodController extends GetxController {
       });
       // print(_popularProductList);
       // print('empty' + _popularProductList.last.name!);
+      _isLoaded = true;
       update();
       print('Working');
     } else {
