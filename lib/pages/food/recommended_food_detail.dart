@@ -12,6 +12,8 @@ class RecommendedFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // automaticallyImplyLeading: false,
+
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

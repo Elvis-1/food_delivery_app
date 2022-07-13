@@ -9,6 +9,17 @@ var myMap = {
     {'Country': 'Benin', 'City': 'Bonu'}
   ],
 };
+// accessing the map above
+// print(myMap['name']);
+// print(myMapp['address']);
+
+// accessing the inner list i.e the map in address
+
+// var addressList = myMap['address'];
+
+// (addressList as List).forEach((e){
+//   print(e['country']);
+// });
 
 class Person {
   String? name;

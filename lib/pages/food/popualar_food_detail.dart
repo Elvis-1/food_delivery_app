@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/utils/app_icon.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -7,143 +8,163 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class PopuparFoodDetail extends StatelessWidget {
   const PopuparFoodDetail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>().getPopularProductList();
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          // background image
-          Positioned(
-              left: 0,
-              right: 0,
-              child: Container(
-                height: Dimension.popularFoodContainer,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/image/food0.png'))),
-              )),
-
-          // icon widget
-          Positioned(
-              top: Dimension.height45,
-              left: Dimension.width20,
-              right: Dimension.width20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppIcon(icon: Icons.arrow_back_ios),
-                  AppIcon(icon: Icons.shopping_cart_outlined),
-                ],
-              )),
-
-          // introduction to food
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: Dimension.popularFoodContainer - 20,
-              child: Container(
-                  padding: EdgeInsets.only(
-                      right: Dimension.width20,
-                      left: Dimension.width20,
-                      top: Dimension.width20),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(Dimension.radius20),
-                          topLeft: Radius.circular(Dimension.radius20))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppColumn(text: 'Chinese Side'),
-                      SizedBox(
-                        height: Dimension.height20,
-                      ),
-                      BigText(text: 'Introduce'),
-                      SizedBox(
-                        height: Dimension.height20,
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: ExpandableTextWidget(
-                              text:
-                                  'God is good to me, God is good to me God is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me'),
-                        ),
-                      ),
-                    ],
-                  )))
-        ],
-      ),
-      bottomNavigationBar: Container(
-        height: Dimension.bottomHeightBar,
-        padding: EdgeInsets.only(
-            top: Dimension.height30,
-            bottom: Dimension.height30,
-            right: Dimension.width20,
-            left: Dimension.width20),
-        decoration: BoxDecoration(
-          color: AppColors.buttonBackgroundColor,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(Dimension.radius20 * 2),
-              topLeft: Radius.circular(Dimension.radius20 * 2)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        backgroundColor: Colors.white,
+        body: Stack(
           children: [
-            Container(
-              padding: EdgeInsets.only(
-                  top: Dimension.height20,
-                  bottom: Dimension.height20,
-                  right: Dimension.width20,
-                  left: Dimension.width20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimension.radius20),
-                color: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.remove,
-                    color: AppColors.signColor,
-                  ),
-                  SizedBox(
-                    width: Dimension.width10 / 2,
-                  ),
-                  BigText(text: '0'),
-                  SizedBox(
-                    width: Dimension.width10 / 2,
-                  ),
-                  Icon(
-                    Icons.add,
-                    color: AppColors.signColor,
-                  )
-                ],
-              ),
-            ),
-            Container(
-                padding: EdgeInsets.only(
-                    top: Dimension.height20,
-                    bottom: Dimension.height20,
-                    right: Dimension.width20,
-                    left: Dimension.width20),
-                child: BigText(
-                  text: "\$10 | Add to cart",
-                  color: Colors.white,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.mainColor,
-                  borderRadius: BorderRadius.circular(Dimension.radius20),
-                ))
+            // background image
+            Positioned(
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: Dimension.popularFoodContainer,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/image/food0.png'))),
+                )),
+
+            // icon widget
+            Positioned(
+                top: Dimension.height45,
+                left: Dimension.width20,
+                right: Dimension.width20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: AppIcon(icon: Icons.arrow_back_ios),
+                    ),
+                    AppIcon(icon: Icons.shopping_cart_outlined),
+                  ],
+                )),
+
+            // introduction to food
+            Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                top: Dimension.popularFoodContainer - 20,
+                child: Container(
+                    padding: EdgeInsets.only(
+                        right: Dimension.width20,
+                        left: Dimension.width20,
+                        top: Dimension.width20),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimension.radius20),
+                            topLeft: Radius.circular(Dimension.radius20))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppColumn(text: 'Chinese Side'),
+                        SizedBox(
+                          height: Dimension.height20,
+                        ),
+                        BigText(text: 'Introduce'),
+                        SizedBox(
+                          height: Dimension.height20,
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: ExpandableTextWidget(
+                                text:
+                                    'God is good to me, God is good to me God is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me'),
+                          ),
+                        ),
+                      ],
+                    )))
           ],
         ),
-      ),
-    );
+        bottomNavigationBar:
+            GetBuilder<PopularProductController>(builder: (pupularProduct) {
+          return Container(
+            height: Dimension.bottomHeightBar,
+            padding: EdgeInsets.only(
+                top: Dimension.height30,
+                bottom: Dimension.height30,
+                right: Dimension.width20,
+                left: Dimension.width20),
+            decoration: BoxDecoration(
+              color: AppColors.buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(Dimension.radius20 * 2),
+                  topLeft: Radius.circular(Dimension.radius20 * 2)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimension.height20,
+                      bottom: Dimension.height20,
+                      right: Dimension.width20,
+                      left: Dimension.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimension.radius20),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          pupularProduct.setQuantity(false);
+                        },
+                        child: Icon(
+                          Icons.remove,
+                          color: AppColors.signColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: Dimension.width10 / 2,
+                      ),
+                      BigText(text: pupularProduct.quantity.toString()),
+                      SizedBox(
+                        width: Dimension.width10 / 2,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          pupularProduct.setQuantity(true);
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: AppColors.signColor,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                    padding: EdgeInsets.only(
+                        top: Dimension.height20,
+                        bottom: Dimension.height20,
+                        right: Dimension.width20,
+                        left: Dimension.width20),
+                    child: BigText(
+                      text: "\$10 | Add to cart",
+                      color: Colors.white,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.mainColor,
+                      borderRadius: BorderRadius.circular(Dimension.radius20),
+                    ))
+              ],
+            ),
+          );
+        }));
   }
 }
