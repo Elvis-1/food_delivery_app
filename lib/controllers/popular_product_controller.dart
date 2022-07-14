@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
 import 'package:food_delivery/models/product_model.dart';
 import 'package:food_delivery/utils/colors.dart';
@@ -14,6 +15,7 @@ class PopularProductController extends GetxController {
 
   List<ProductModel> _popularProductList = [];
   List<ProductModel> get popularProductList => _popularProductList;
+  late CartController _cart;
 
   int _quantity = 0;
   int get quantity => _quantity;
@@ -28,7 +30,7 @@ class PopularProductController extends GetxController {
     Response response = await popularProductRepo.GetPopularProductList();
     final extract = response.body as Map<String, dynamic>;
     // print(extract);
-    print(extract['data']);
+    // print(extract['data']);
     final extractedData = extract['data'] as List;
     // print(extractedData);
     if (response.statusCode == 200) {
@@ -37,7 +39,7 @@ class PopularProductController extends GetxController {
       extractedData.forEach((
         element,
       ) {
-        print('The IMAGE' + element['products']['image']);
+        // print('The IMAGE' + element['products']['image']);
         _popularProductList.add(ProductModel(
             id: element['products']['id'],
             name: element['products']['name'],
@@ -52,9 +54,9 @@ class PopularProductController extends GetxController {
       // print('empty' + _popularProductList.last.name!);
       _isLoaded = true;
       update();
-      print('Working');
+      // print('Working');
     } else {
-      print('Not Working');
+      // print('Not Working');
     }
   }
 
@@ -64,7 +66,7 @@ class PopularProductController extends GetxController {
       // print('increment ' + _quantity.toString());
     } else {
       _quantity = checkQuantity(_quantity - 1);
-      print('decrement ' + _quantity.toString());
+      // print('decrement ' + _quantity.toString());
     }
     update();
   }
@@ -92,8 +94,13 @@ class PopularProductController extends GetxController {
     update();
   }
 
-  void initProduct() {
+  void initProduct(CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
+    _cart = cart;
+  }
+
+  void addItem(ProductModel product) {
+    _cart.addItem(product, _quantity);
   }
 }

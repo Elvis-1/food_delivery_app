@@ -29,7 +29,7 @@ class RecommendedFoodController extends GetxController {
     Response response = await recommendedFoodRepo.GetRecommendedFoodList();
     final extract = response.body as Map<String, dynamic>;
     // print(extract);
-    print(extract['data']);
+    // print(extract['data']);
     final extractedData = extract['data'] as List;
     // print(extractedData);
     if (response.statusCode == 200) {
@@ -38,7 +38,7 @@ class RecommendedFoodController extends GetxController {
       extractedData.forEach((
         element,
       ) {
-        print('The IMAGE' + element['products']['image']);
+        // print('The IMAGE' + element['products']['image']);
         _recommendedProductList.add(ProductModel(
             id: element['products']['id'],
             name: element['products']['name'],
@@ -53,9 +53,9 @@ class RecommendedFoodController extends GetxController {
       // print('empty' + _popularProductList.last.name!);
       _isLoaded = true;
       update();
-      print('Working');
+      // print('Working');
     } else {
-      print('Not Working');
+      // print('Not Working');
     }
   }
 
@@ -65,7 +65,7 @@ class RecommendedFoodController extends GetxController {
       // print('increment ' + _quantity.toString());
     } else {
       _quantity = checkQuantity(_quantity - 1);
-      print('decrement ' + _quantity.toString());
+      // print('decrement ' + _quantity.toString());
     }
     update();
   }

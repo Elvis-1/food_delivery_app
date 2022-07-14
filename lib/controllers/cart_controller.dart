@@ -10,16 +10,22 @@ class CartController extends GetxController {
   Map<int, CartModel> items = {};
 
   void addItem(ProductModel product, int quantity) {
-    items.putIfAbsent(
-        product.id!,
-        () => CartModel(
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            stars: product.stars,
-            img: product.img,
-            isExist: true,
-            quantity: quantity,
-            time: DateTime.now().toString()));
+    items.putIfAbsent(product.id!, () {
+      print('Adding items to the cart ' +
+          product.id.toString() +
+          'the quantity ' +
+          quantity.toString());
+
+      print(items.length.toString());
+      return CartModel(
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          stars: product.stars,
+          img: product.img,
+          isExist: true,
+          quantity: quantity,
+          time: DateTime.now().toString());
+    });
   }
 }

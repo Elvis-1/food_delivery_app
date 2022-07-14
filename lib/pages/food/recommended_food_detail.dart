@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/recommended_food_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/app_icon.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var recommendedfood =
+        Get.find<RecommendedFoodController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       // automaticallyImplyLeading: false,
@@ -17,11 +23,13 @@ class RecommendedFoodDetail extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 80,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                    onTap: () => Get.back(), child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -37,16 +45,16 @@ class RecommendedFoodDetail extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 child: Center(
-                    child:
-                        BigText(size: Dimension.font26, text: 'Chinese Side')),
+                    child: BigText(
+                        size: Dimension.font26, text: recommendedfood.name!)),
               ),
             ),
             pinned: true,
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/image/food0.png',
+              background: Image.network(
+                AppConstants.RECOMMENDED_FOOD_IMAGE + recommendedfood.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -59,8 +67,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   margin: EdgeInsets.only(
                       left: Dimension.width20, right: Dimension.width20),
                   child: ExpandableTextWidget(
-                    text:
-                        'God is good to me, God is good to me God is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me, to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to meGod is good to me',
+                    text: recommendedfood.description!,
                   ),
                 )
               ],

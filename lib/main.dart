@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
 
-      //9:25
+      //9:31
+      // 8:08  for route
     );
   }
 }

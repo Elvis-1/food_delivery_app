@@ -56,19 +56,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         // slider
         GetBuilder<RecommendedFoodController>(builder: (recommended) {
           return recommended.isLoaded
-              ? GestureDetector(
-                  onTap: () => Get.toNamed(RouteHelper.recommendedFood),
-                  child: Container(
-                    //color: Colors.blueGrey,
-                    height: Dimension.pageView,
-                    child: PageView.builder(
-                        controller: pageController,
-                        itemCount: recommended.recommendedProductList.length,
-                        itemBuilder: (context, position) {
-                          return _buildPageItem(position,
-                              recommended.recommendedProductList[position]);
-                        }),
-                  ),
+              ? Container(
+                  //color: Colors.blueGrey,
+                  height: Dimension.pageView,
+                  child: PageView.builder(
+                      controller: pageController,
+                      itemCount: recommended.recommendedProductList.length,
+                      itemBuilder: (context, position) {
+                        return GestureDetector(
+                            onTap: () => Get.toNamed(
+                                RouteHelper.getRecommendedFood(position)),
+                            child: _buildPageItem(position,
+                                recommended.recommendedProductList[position]));
+                      }),
                 )
               : Container(
                   child: CircularProgressIndicator(
@@ -125,129 +125,133 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
         GetBuilder<PopularProductController>(builder: (popularfood) {
           return popularfood.isLoaded
-              ? GestureDetector(
-                  onTap: () => Get.toNamed(RouteHelper.popularFood),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: popularfood.popularProductList.length,
-                    itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.only(
-                          left: Dimension.width20,
-                          right: Dimension.width20,
-                          bottom: Dimension.height10),
-                      child: Row(
-                        children: [
-                          // Image section
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: popularfood.popularProductList.length,
+                  itemBuilder: (context, index) => GestureDetector(
+                      onTap: () =>
+                          Get.toNamed(RouteHelper.getPopularFood(index)),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            left: Dimension.width20,
+                            right: Dimension.width20,
+                            bottom: Dimension.height10),
+                        child: Row(
+                          children: [
+                            // Image section
 
-                          Container(
-                            height: Dimension.listViewImgSize,
-                            width: Dimension.listViewImgSize,
-                            decoration: BoxDecoration(
-                                color: Colors.white38,
-                                borderRadius:
-                                    BorderRadius.circular(Dimension.radius20),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      AppConstants.POPULAR_FOOD_IMAGE +
-                                          popularfood
-                                              .popularProductList[index].img!),
-                                )),
-                          ),
-
-                          //Text Section
-
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              height: Dimension.pageViewTextContainer,
-                              margin: EdgeInsets.only(
-                                  left: Dimension.width30,
-                                  right: Dimension.width30,
-                                  bottom: Dimension.height25),
+                            Container(
+                              height: Dimension.listViewImgSize,
+                              width: Dimension.listViewImgSize,
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.white38,
                                   borderRadius:
                                       BorderRadius.circular(Dimension.radius20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color(0xFFe8e8e8),
-                                        offset: Offset(0, 5)),
-                                    BoxShadow(
-                                        color: Colors.white,
-                                        offset: Offset(-5, 0)),
-                                    BoxShadow(
-                                        color: Color(0xFFe8e8e8),
-                                        blurRadius: 5.0,
-                                        offset: Offset(5, 0)),
-                                  ]),
-                              child: Container(
-                                  padding: EdgeInsets.only(
-                                    top: Dimension.height10,
-                                    right: Dimension.width10,
-                                    left: Dimension.width15,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      BigText(
-                                        text: popularfood
-                                            .popularProductList[index].name!,
-                                        size: Dimension.font26,
-                                      ),
-                                      SizedBox(
-                                        height: Dimension.height20 / 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: Dimension.width10,
-                                          ),
-                                          SmallText(text: '4.5'),
-                                          SizedBox(
-                                            width: Dimension.width10,
-                                          ),
-                                          SmallText(text: '1287'),
-                                          SizedBox(
-                                            width: Dimension.width10,
-                                          ),
-                                          SmallText(text: 'comments')
-                                        ],
-                                      ),
-                                      // SizedBox(
-                                      //   height: Dimension.height20,
-                                      // ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          IconAndTextWidget(
-                                              icon: Icons.circle_sharp,
-                                              text: "Normal",
-                                              iconColor: AppColors.iconColor1),
-                                          IconAndTextWidget(
-                                              icon: Icons.location_on,
-                                              text: "1.7km",
-                                              iconColor: AppColors.mainColor),
-                                          IconAndTextWidget(
-                                              icon: Icons.access_time_rounded,
-                                              text: "32min",
-                                              iconColor: AppColors.iconColor2)
-                                        ],
-                                      )
-                                    ],
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                        AppConstants.POPULAR_FOOD_IMAGE +
+                                            popularfood
+                                                .popularProductList[index]
+                                                .img!),
                                   )),
                             ),
-                          )
-                          // IconAndTextWidget(
-                          //     icon: icon, text: text, iconColor: iconColor)
-                        ],
-                      ),
-                    ),
-                  ))
+
+                            //Text Section
+
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                height: Dimension.pageViewTextContainer,
+                                margin: EdgeInsets.only(
+                                    left: Dimension.width30,
+                                    right: Dimension.width30,
+                                    bottom: Dimension.height25),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(
+                                        Dimension.radius20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color(0xFFe8e8e8),
+                                          offset: Offset(0, 5)),
+                                      BoxShadow(
+                                          color: Colors.white,
+                                          offset: Offset(-5, 0)),
+                                      BoxShadow(
+                                          color: Color(0xFFe8e8e8),
+                                          blurRadius: 5.0,
+                                          offset: Offset(5, 0)),
+                                    ]),
+                                child: Container(
+                                    padding: EdgeInsets.only(
+                                      top: Dimension.height10,
+                                      right: Dimension.width10,
+                                      left: Dimension.width15,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        BigText(
+                                          text: popularfood
+                                              .popularProductList[index].name!,
+                                          size: Dimension.font26,
+                                        ),
+                                        SizedBox(
+                                          height: Dimension.height20 / 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              width: Dimension.width10,
+                                            ),
+                                            SmallText(text: '4.5'),
+                                            SizedBox(
+                                              width: Dimension.width10,
+                                            ),
+                                            SmallText(text: '1287'),
+                                            SizedBox(
+                                              width: Dimension.width10,
+                                            ),
+                                            SmallText(text: 'comments')
+                                          ],
+                                        ),
+                                        // SizedBox(
+                                        //   height: Dimension.height20,
+                                        // ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconAndTextWidget(
+                                                icon: Icons.circle_sharp,
+                                                text: "Normal",
+                                                iconColor:
+                                                    AppColors.iconColor1),
+                                            IconAndTextWidget(
+                                                icon: Icons.location_on,
+                                                text: "1.7km",
+                                                iconColor: AppColors.mainColor),
+                                            IconAndTextWidget(
+                                                icon: Icons.access_time_rounded,
+                                                text: "32min",
+                                                iconColor: AppColors.iconColor2)
+                                          ],
+                                        )
+                                      ],
+                                    )),
+                              ),
+                            )
+                            // IconAndTextWidget(
+                            //     icon: icon, text: text, iconColor: iconColor)
+                          ],
+                        ),
+                      )),
+                )
               : Container(
                   child: CircularProgressIndicator(
                     color: AppColors.mainColor,
