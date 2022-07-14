@@ -15,7 +15,7 @@ class PopularProductController extends GetxController {
 
   List<ProductModel> _popularProductList = [];
   List<ProductModel> get popularProductList => _popularProductList;
-  late CartController _cart;
+  CartController? _cart;
 
   int _quantity = 0;
   int get quantity => _quantity;
@@ -95,12 +95,24 @@ class PopularProductController extends GetxController {
   }
 
   void initProduct(CartController cart) {
+    //
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
   }
 
+// The above was the initial method but we noticed it was reinitializing cartcontroller and giving errors, commented it out for the mean time.
+
   void addItem(ProductModel product) {
-    _cart.addItem(product, _quantity);
+    if (_quantity > 0) {
+      _cart!.addItem(product, _quantity);
+    } else {
+      Get.snackbar(
+        "Item Count",
+        "You should at least add one item to the cart!",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+      );
+    }
   }
 }

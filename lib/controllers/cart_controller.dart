@@ -7,25 +7,36 @@ class CartController extends GetxController {
   CartRepo cartRepo;
   CartController({required this.cartRepo});
 
-  Map<int, CartModel> items = {};
-
+  Map<int, CartModel> _items = {};
+  Map<int, CartModel> get items => _items;
   void addItem(ProductModel product, int quantity) {
-    items.putIfAbsent(product.id!, () {
-      print('Adding items to the cart ' +
-          product.id.toString() +
-          'the quantity ' +
-          quantity.toString());
-
-      print(items.length.toString());
-      return CartModel(
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          stars: product.stars,
-          img: product.img,
-          isExist: true,
-          quantity: quantity,
-          time: DateTime.now().toString());
-    });
+    if (_items.containsKey(product.id)) {
+      _items.update(product.id!, (value) {
+        return CartModel(
+            id: value.id,
+            name: value.name,
+            price: value.price,
+            stars: value.stars,
+            img: value.img,
+            isExist: true,
+            quantity: value.quantity! + quantity,
+            time: DateTime.now().toString());
+      });
+    } else {
+      _items.putIfAbsent(product.id!, () {
+        // _items.forEach((key, value) {
+        //   print('The quantity of product added is ' + value.quantity.toString());
+        // });
+        return CartModel(
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            stars: product.stars,
+            img: product.img,
+            isExist: true,
+            quantity: quantity,
+            time: DateTime.now().toString());
+      });
+    }
   }
 }

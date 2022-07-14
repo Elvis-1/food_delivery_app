@@ -22,6 +22,8 @@ class PopuparFoodDetail extends StatelessWidget {
         Get.find<PopularProductController>().popularProductList[pageId];
     // print("Page id is " + pageId.toString());
     // print("product of id is " + product.id.toString());
+    // Get.find<PopularProductController>()
+    //     .initProduct(Get.find<CartController>());
     Get.find<PopularProductController>()
         .initProduct(Get.find<CartController>());
     Get.find<PopularProductController>().getPopularProductList();
