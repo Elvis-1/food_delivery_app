@@ -72,7 +72,7 @@ class PopularProductController extends GetxController {
   }
 
   int checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar(
         "Item Count",
         "You can't reduce more!",
@@ -80,7 +80,7 @@ class PopularProductController extends GetxController {
         colorText: Colors.white,
       );
       return 0;
-    } else if (quantity > 20) {
+    } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
         "Item Count",
         "You can't add more!",
@@ -94,25 +94,36 @@ class PopularProductController extends GetxController {
     update();
   }
 
-  void initProduct(CartController cart) {
+  void initProduct(ProductModel product, CartController cart) {
     //
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exist = false;
+    exist = cart.existIncart(product);
+    print('Exist or not : ' + exist.toString());
+    if (exist) {
+      _inCartItems = _cart!.getQuantity(product);
+    }
+    print('The quantity in the cart is ' + _inCartItems.toString());
   }
 
-// The above was the initial method but we noticed it was reinitializing cartcontroller and giving errors, commented it out for the mean time.
-
   void addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cart!.addItem(product, _quantity);
-    } else {
-      Get.snackbar(
-        "Item Count",
-        "You should at least add one item to the cart!",
-        backgroundColor: AppColors.mainColor,
-        colorText: Colors.white,
-      );
-    }
+    _cart!.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart!.getQuantity(product);
+
+    _cart!.items.forEach((key, value) {
+      print('The id is ' +
+          value.id.toString() +
+          ' and the quantity is ' +
+          value.quantity.toString());
+    });
+
+    update();
+  }
+
+  int get totalItems {
+    return _cart!.totalItems;
   }
 }

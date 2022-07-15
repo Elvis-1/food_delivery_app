@@ -25,7 +25,7 @@ class PopuparFoodDetail extends StatelessWidget {
     // Get.find<PopularProductController>()
     //     .initProduct(Get.find<CartController>());
     Get.find<PopularProductController>()
-        .initProduct(Get.find<CartController>());
+        .initProduct(product, Get.find<CartController>());
     Get.find<PopularProductController>().getPopularProductList();
     return Scaffold(
         backgroundColor: Colors.white,
@@ -59,7 +59,37 @@ class PopuparFoodDetail extends StatelessWidget {
                       },
                       child: AppIcon(icon: Icons.arrow_back_ios),
                     ),
-                    AppIcon(icon: Icons.shopping_cart_outlined),
+                    GetBuilder<PopularProductController>(builder: (controller) {
+                      return Stack(
+                        children: [
+                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    iconColor: Colors.transparent,
+                                    size: 20,
+                                    backgroungColor: AppColors.mainColor,
+                                  ),
+                                )
+                              : Container(),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 3,
+                                  top: 3,
+                                  child: BigText(
+                                    text: Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString(),
+                                    color: Colors.white,
+                                    size: 12,
+                                  ))
+                              : Container()
+                        ],
+                      );
+                    })
                   ],
                 )),
 
@@ -142,7 +172,7 @@ class PopuparFoodDetail extends StatelessWidget {
                       SizedBox(
                         width: Dimension.width10 / 2,
                       ),
-                      BigText(text: pupularProduct.quantity.toString()),
+                      BigText(text: pupularProduct.inCartItems.toString()),
                       SizedBox(
                         width: Dimension.width10 / 2,
                       ),
@@ -160,7 +190,7 @@ class PopuparFoodDetail extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print(product.name);
+                    // print(product.name);
                     pupularProduct.addItem(product);
                   },
                   child: Container(
