@@ -28,16 +28,16 @@ class MyApp extends StatelessWidget {
     Get.find<RecommendedFoodController>().getRecommendedFoodList();
     Get.find<CartController>();
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(),
-        home: CartPage()
-        //MainFoodPage(),
-        // initialRoute: RouteHelper.initial,
-        //getPages: RouteHelper.routes,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(),
+      home: //CartPage()
+          MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
 
-        //11:07
-        // 8:08  for route
-        );
+      //11:42
+      // 8:08  for route
+    );
   }
 }

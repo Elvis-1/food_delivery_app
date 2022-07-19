@@ -165,8 +165,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               child: Container(
                                 height: Dimension.pageViewTextContainer,
                                 margin: EdgeInsets.only(
-                                    left: Dimension.width30,
-                                    right: Dimension.width30,
+                                    left: Dimension.width10 / 2,
+                                    right: Dimension.width10,
                                     bottom: Dimension.height25),
                                 decoration: BoxDecoration(
                                     color: Colors.white,

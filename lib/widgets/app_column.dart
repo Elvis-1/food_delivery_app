@@ -20,7 +20,7 @@ class AppColumn extends StatelessWidget {
           size: Dimension.font26,
         ),
         SizedBox(
-          height: Dimension.height20,
+          height: Dimension.height10,
         ),
         Row(
           children: [

@@ -45,11 +45,16 @@ class RecommendedFoodDetail extends StatelessWidget {
                             ? Positioned(
                                 right: 0,
                                 top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  iconColor: Colors.transparent,
-                                  size: 20,
-                                  backgroungColor: AppColors.mainColor,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(CartPage());
+                                  },
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    iconColor: Colors.transparent,
+                                    size: 20,
+                                    backgroungColor: AppColors.mainColor,
+                                  ),
                                 ),
                               )
                             : Container(),
@@ -221,3 +226,5 @@ class RecommendedFoodDetail extends StatelessWidget {
         ));
   }
 }
+
+class CartPage {}
