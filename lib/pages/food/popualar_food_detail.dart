@@ -200,7 +200,7 @@ class PopuparFoodDetail extends StatelessWidget {
                           right: Dimension.width20,
                           left: Dimension.width20),
                       child: BigText(
-                        text: "\$10 | Add to cart",
+                        text: "N ${product.price} | Add to cart",
                         color: Colors.white,
                       ),
                       decoration: BoxDecoration(

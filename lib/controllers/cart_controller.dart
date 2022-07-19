@@ -13,6 +13,7 @@ class CartController extends GetxController {
   Map<int, CartModel> get items => _items;
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
+    print(product.name! + ' from cart controller');
     if (_items.containsKey(product.id)) {
       _items.update(product.id!, (value) {
         totalQuantity = value.quantity! + quantity;
