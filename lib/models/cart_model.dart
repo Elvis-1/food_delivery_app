@@ -1,3 +1,5 @@
+import 'package:food_delivery/models/product_model.dart';
+
 class CartModel {
   int? id;
   String? name;
@@ -7,6 +9,7 @@ class CartModel {
   String? price;
   String? stars;
   String? img;
+  ProductModel? product;
 
   CartModel(
       {required this.id,
@@ -16,5 +19,6 @@ class CartModel {
       required this.img,
       required this.isExist,
       required this.quantity,
-      required this.time});
+      required this.time,
+      required this.product});
 }

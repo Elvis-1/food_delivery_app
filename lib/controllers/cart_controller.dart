@@ -25,7 +25,8 @@ class CartController extends GetxController {
             img: value.img,
             isExist: true,
             quantity: value.quantity! + quantity,
-            time: DateTime.now().toString());
+            time: DateTime.now().toString(),
+            product: product);
       });
       if (totalQuantity <= 0) {
         _items.remove(product.id);
@@ -44,7 +45,8 @@ class CartController extends GetxController {
               img: product.img,
               isExist: true,
               quantity: quantity,
-              time: DateTime.now().toString());
+              time: DateTime.now().toString(),
+              product: product);
         });
       } else {
         Get.snackbar(
@@ -55,6 +57,8 @@ class CartController extends GetxController {
         );
       }
     }
+
+    update();
   }
 
   bool existIncart(ProductModel product) {
