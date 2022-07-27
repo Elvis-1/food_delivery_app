@@ -16,7 +16,9 @@ import 'package:get/get.dart';
 
 class PopuparFoodDetail extends StatelessWidget {
   int pageId;
-  PopuparFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  String page;
+  PopuparFoodDetail({Key? key, required this.pageId, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class PopuparFoodDetail extends StatelessWidget {
     //     .initProduct(Get.find<CartController>());
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
-    Get.find<PopularProductController>().getPopularProductList();
+    //Get.find<PopularProductController>().getPopularProductList();
     return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -57,14 +59,18 @@ class PopuparFoodDetail extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.back();
+                        if (page == 'cartpage') {
+                          Get.toNamed(RouteHelper.getCartPage());
+                        } else {
+                          Get.toNamed(RouteHelper.getInitial());
+                        }
                       },
                       child: AppIcon(icon: Icons.arrow_back_ios),
                     ),
                     GetBuilder<PopularProductController>(builder: (controller) {
                       return GestureDetector(
                         onTap: () {
-                          if (controller.totalItems > 1)
+                          if (controller.totalItems >= 1)
                             Get.toNamed(RouteHelper.getCartPage());
                         },
                         child: Stack(

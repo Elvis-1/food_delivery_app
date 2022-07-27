@@ -5,6 +5,7 @@ import 'package:food_delivery/controllers/recommended_food_controller.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/popualar_food_detail.dart';
 import 'package:food_delivery/pages/food/recommended_food_detail.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
@@ -31,13 +32,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: //CartPage()
-          MainFoodPage(),
-      initialRoute: RouteHelper.initial,
+      home: HomePage(),
+      //     MainFoodPage(),
+      initialRoute: RouteHelper.getInitial(),
       getPages: RouteHelper.routes,
 
       //44
-      // 8:08  for route
+      // 1:12  for route
     );
   }
 }

@@ -1,5 +1,5 @@
 class AppConstants {
-  static const String APP_NAME = 'EBFOOD';
+  static const String APP_NAME = 'IFNOTFOOD';
   static const int APP_VERSION = 1;
 
   static const String BASE_URI = 'https://foodapp.ifnotgod.com/';
