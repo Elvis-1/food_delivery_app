@@ -2,24 +2,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/popualar_food_detail.dart';
 import 'package:food_delivery/pages/food/recommended_food_detail.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/pages/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
   static const initial = '/';
+  static const splashScreen = '/splash-screen';
   static const popularFood = '/popular-food';
   static const recommendedFood = '/recommended-food';
   static const cartPage = '/cart-page';
 
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
+  static String getSplashScreen() => '$splashScreen';
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getInitial() => '$initial';
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => MainFoodPage()),
+    GetPage(name: splashScreen, page: () => SplashScreen()),
+    GetPage(name: initial, page: () => HomePage()),
     GetPage(
       name: popularFood,
       page: () {

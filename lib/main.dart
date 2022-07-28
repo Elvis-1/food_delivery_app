@@ -8,6 +8,7 @@ import 'package:food_delivery/pages/food/recommended_food_detail.dart';
 import 'package:food_delivery/pages/home/home_page.dart';
 
 import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/pages/splash/splash_screen.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
@@ -24,21 +25,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // Get.find<GetTestimoniesController>().getTestimoniesList();
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedFoodController>().getRecommendedFoodList();
-    Get.find<CartController>();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: HomePage(),
-      //     MainFoodPage(),
-      initialRoute: RouteHelper.getInitial(),
-      getPages: RouteHelper.routes,
+    return GetBuilder<PopularProductController>(builder: (_) {
+      return GetBuilder<RecommendedFoodController>(builder: (_) {
+        return GetBuilder<CartController>(builder: (_) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(),
+            // home: SplashScreen(),
+            //HomePage(),
+            //     MainFoodPage(),
+            initialRoute: RouteHelper.getSplashScreen(),
+            getPages: RouteHelper.routes,
 
-      //44
-      // 1:12  for route
-    );
+            // 1:12  for route
+          );
+        });
+      });
+    });
   }
 }

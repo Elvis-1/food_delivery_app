@@ -6,15 +6,18 @@ import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_food_controller.dart';
 import 'package:food_delivery/data/api/api_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> init() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+  Get.lazyPut(() => sharedPreferences);
   // api client
   Get.lazyPut(() => ApiClient(appBaseUrl: 'https://foodapp.ifnotgod.com/'));
 
   // repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedFoodRepo(apiClient: Get.find()));
-  Get.lazyPut(() => CartRepo());
+  Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   // controllers
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));

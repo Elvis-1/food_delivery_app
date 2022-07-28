@@ -18,4 +18,15 @@ class ProductModel {
       required this.img,
       required this.location,
       required this.typeId});
+
+  ProductModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    price = json['price'];
+    stars = json['stars'];
+    img = json['img'];
+    location = json['location'];
+    typeId = json['typeId'];
+  }
 }
