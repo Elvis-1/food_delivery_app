@@ -25,22 +25,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedFoodController>(builder: (_) {
-        return GetBuilder<CartController>(builder: (_) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(),
-            // home: SplashScreen(),
-            //HomePage(),
-            //     MainFoodPage(),
-            initialRoute: RouteHelper.getSplashScreen(),
-            getPages: RouteHelper.routes,
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(),
+          // home: SplashScreen(),
+          //HomePage(),
+          //     MainFoodPage(),
+          initialRoute: RouteHelper.getSplashScreen(),
+          getPages: RouteHelper.routes,
 
-            // 2:19  for route
-          );
-        });
+          // 3:45  for route
+        );
       });
     });
   }

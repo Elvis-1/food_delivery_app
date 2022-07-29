@@ -277,8 +277,9 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // print(product.name);
+                    print("tapped");
                     // pupularProduct.addItem(product);
+                    cart.addToHistory();
                   },
                   child: Container(
                       padding: EdgeInsets.only(

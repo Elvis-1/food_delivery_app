@@ -11,4 +11,7 @@ class AppConstants {
 
   static const String RECOMMENDED_FOOD_IMAGE =
       "https://foodapp.ifnotgod.com/food_app/public/recommendedFood/";
+
+  static const String CART_LIST = 'cart-list';
+  static const String CART_HISTORY_LIST = "cart-history-list";
 }
