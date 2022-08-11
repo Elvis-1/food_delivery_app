@@ -69,7 +69,7 @@ class CartRepo {
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (int i = 0; i < cart.length; i++) {
-      print("History list " + cart[i]);
+      print("History list " + cartHistory[i]);
       cartHistory.add(cart[i]);
     }
     removeCart();

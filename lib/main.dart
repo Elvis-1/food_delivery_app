@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           initialRoute: RouteHelper.getSplashScreen(),
           getPages: RouteHelper.routes,
 
-          // 3:45  for route
+          // 3:45 
         );
       });
     });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:food_delivery/pages/cart/cart_history_screen.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -23,11 +24,7 @@ class _HomePageState extends State<HomePage> {
         child: Text("Page"),
       ),
     ),
-    Container(
-      child: Center(
-        child: Text("Next Page"),
-      ),
-    ),
+    CartHistoryScreen(),
     Container(
       child: Center(
         child: Text("Next Next Page"),
@@ -54,11 +51,7 @@ class _HomePageState extends State<HomePage> {
           child: Text("Page"),
         ),
       ),
-      Container(
-        child: Center(
-          child: Text("Next Page"),
-        ),
-      ),
+      CartHistoryScreen(),
       Container(
         child: Center(
           child: Text("Next Next Page"),
