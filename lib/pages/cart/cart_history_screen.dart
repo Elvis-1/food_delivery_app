@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/app_icon.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CartHistoryScreen extends StatelessWidget {
   const CartHistoryScreen({Key? key}) : super(key: key);
@@ -27,8 +31,9 @@ class CartHistoryScreen extends StatelessWidget {
       return cartItemsPerOrder.entries.map((e) => e.value).toList();
     }
 
-    List<int> orderItem = cartOrderTimeToList();
-    var saveCounter = 0;
+    List<int> itemsPerOrder = cartOrderTimeToList(); // 3,2,3
+
+    var listCounter = 0;
 
     return Scaffold(
       body: Column(
@@ -58,7 +63,92 @@ class CartHistoryScreen extends StatelessWidget {
                 top: Dimension.width20,
                 right: Dimension.width20,
                 left: Dimension.width20),
-            child: ListView(children: [Text('Hi There')]),
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: ListView(children: [
+                for (int i = 0; i <= itemsPerOrder.length; i++)
+                  Container(
+                    height: 120,
+                    margin: EdgeInsets.only(bottom: Dimension.height20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        (() {
+                          var outPutFormat = DateFormat("MM/dd/yyy hh:mm a");
+                          return Text('Text');
+                        }()),
+                        SizedBox(
+                          height: Dimension.height10,
+                        ),
+                        Row(
+                          children: [
+                            Wrap(
+                              direction: Axis.horizontal,
+                              children:
+                                  List.generate(itemsPerOrder[i], (index) {
+                                if (listCounter < getCartHistoryList.length) {
+                                  listCounter++;
+                                }
+                                return index <= 2
+                                    ? Container(
+                                        height: 80,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimension.radius15 / 2),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                    'assets/image/food0.png'
+                                                    // AppConstants
+                                                    //           .RECOMMENDED_FOOD_IMAGE +
+                                                    //       getCartHistoryList[listCounter-1]
+                                                    //           .img!
+
+                                                    ))),
+                                      )
+                                    : Container();
+                              }),
+                            )
+                          ],
+                        ),
+                        Container(
+                          height: 80,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SmallText(
+                                text: 'Total',
+                                color: AppColors.titleColor,
+                              ),
+                              BigText(
+                                text: itemsPerOrder[i].toString() + "Items",
+                                color: AppColors.titleColor,
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Dimension.width10,
+                                    vertical: Dimension.height10 / 2),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimension.radius15 / 3),
+                                  border: Border.all(
+                                      width: 1, color: AppColors.mainColor),
+                                ),
+                                child: SmallText(
+                                    text: 'one more',
+                                    color: AppColors.mainColor),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+              ]),
+            ),
           ))
         ],
       ),
