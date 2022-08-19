@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
-import 'package:food_delivery/controllers/popular_product_controller.dart';
-import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/app_icon.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -29,7 +27,6 @@ class CartHistoryScreen extends StatelessWidget {
         cartItemsPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
       }
     }
-    print(cartItemsPerOrder.toString() + ' this is cartItemPerOrder');
 
     List<int> cartItemsPerOrderToList() {
       // this helps us to get the number of items per order
@@ -44,14 +41,13 @@ class CartHistoryScreen extends StatelessWidget {
     List<int> itemsPerOrder = cartItemsPerOrderToList(); // 3,2,3
 
     var listCounter = 0;
-    print(itemsPerOrder.toString() + ' yes it got here');
 
     return Scaffold(
       body: Column(
         children: [
           Container(
-            height: 100,
-            padding: EdgeInsets.only(top: 45),
+            height: Dimension.height20 * 5,
+            padding: EdgeInsets.only(top: Dimension.height45),
             color: AppColors.mainColor,
             width: double.maxFinite,
             child: Row(
@@ -81,7 +77,7 @@ class CartHistoryScreen extends StatelessWidget {
                 if (itemsPerOrder.isNotEmpty)
                   for (int i = 0; i < itemsPerOrder.length; i++)
                     Container(
-                      height: 120,
+                      height: Dimension.height20 * 6,
                       margin: EdgeInsets.only(bottom: Dimension.height20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,8 +112,8 @@ class CartHistoryScreen extends StatelessWidget {
                                   return index <= 2
                                       ? Container(
                                           margin: EdgeInsets.only(right: 10),
-                                          height: 80,
-                                          width: 80,
+                                          height: Dimension.height20 * 4,
+                                          width: Dimension.width20 * 4,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(
