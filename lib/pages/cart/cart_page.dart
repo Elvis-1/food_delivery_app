@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_food_controller.dart';
-import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/app_icon.dart';
@@ -17,6 +16,9 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get.find<PopularProductController>().popularProductList;
+    // Get.find<RecommendedFoodController>().recommendedProductList;
+
     return Scaffold(
         body: Stack(
           children: [
@@ -184,7 +186,7 @@ class CartPage extends StatelessWidget {
                                                                   .product!,
                                                               -1);
 
-                                                          print("being tapped");
+                                                          // print("being tapped");
                                                         },
                                                         child: Icon(
                                                           Icons.remove,
@@ -277,8 +279,8 @@ class CartPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print("tapped");
-                    // pupularProduct.addItem(product);
+                    // print("tapped");
+
                     cart.addToHistory();
                   },
                   child: Container(

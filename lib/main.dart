@@ -28,18 +28,20 @@ class MyApp extends StatelessWidget {
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedFoodController>(builder: (_) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(),
-          // home: SplashScreen(),
-          //HomePage(),
-          //     MainFoodPage(),
-          initialRoute: RouteHelper.getSplashScreen(),
-          getPages: RouteHelper.routes,
+        return GetBuilder<CartController>(builder: (_) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(),
+            // home: SplashScreen(),
+            //HomePage(),
+            //     MainFoodPage(),
+            initialRoute: RouteHelper.getSplashScreen(),
+            getPages: RouteHelper.routes,
 
-          // 4:55
-        );
+            // 5:07
+          );
+        });
       });
     });
   }

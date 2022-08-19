@@ -60,6 +60,7 @@ class CartController extends GetxController {
         );
       }
     }
+    // print(_items[0]!.name.toString() + ' in items map');
     cartRepo.addToCartList(getItems);
     update();
   }
@@ -114,7 +115,7 @@ class CartController extends GetxController {
 
   set setCart(List<CartModel> items) {
     storageItems = items;
-    print("Length of cart of cart items is " + storageItems.length.toString());
+    // print("Length of cart of cart items is " + storageItems.length.toString());
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
@@ -122,7 +123,7 @@ class CartController extends GetxController {
 
   void addToHistory() {
     cartRepo.addToCartHistoryList();
-    clear();
+    // clear();
   }
 
   void clear() {

@@ -23,7 +23,7 @@ class PopularProductController extends GetxController {
 
   int _inCartItems = 0;
 
-  int get inCartItems => _inCartItems + _quantity;
+  int get inCartItems => _inCartItems + _quantity; // 1
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
@@ -65,6 +65,9 @@ class PopularProductController extends GetxController {
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
       // print('number of items  ' + _quantity.toString());
+      // print('this is in_cart items ' + inCartItems.toString());
+      // print('this is in cart items ' + _inCartItems.toString());
+      // print('this is _quantity items ' + _quantity.toString());
     } else {
       _quantity = checkQuantity(_quantity - 1);
       // print('number of items ' + _quantity.toString());
@@ -97,7 +100,6 @@ class PopularProductController extends GetxController {
     } else {
       return quantity;
     }
-    update();
   }
 
   void initProduct(ProductModel product, CartController cart) {
@@ -116,8 +118,10 @@ class PopularProductController extends GetxController {
 
   void addItem(ProductModel product) {
     _cart!.addItem(product, _quantity);
+
     _quantity = 0;
     _inCartItems = _cart!.getQuantity(product);
+    //print(_inCartItems.toString() + ' total items added to cart');
 
     // _cart!.items.forEach((key, value) {
     //   print('The id is ' +

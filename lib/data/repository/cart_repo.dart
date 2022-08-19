@@ -28,11 +28,13 @@ class CartRepo {
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
 
-    // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
+    // print(cart.toString() + 'this is cart in adtocartlist');
     //getCartList();
   }
 
   List<CartModel> getCartList() {
+    // print(sharedPreferences.getStringList(AppConstants.CART_LIST).toString() +
+    //     'this is cart list');
     // our getCartList method is expecting a list of cartmodel, but sharedpref stored data as a string, so we get it as a string first
     List<String> carts = [];
 
@@ -45,6 +47,8 @@ class CartRepo {
     carts.forEach((element) {
       return cartList.add(CartModel.fromJson(jsonDecode(element)));
     });
+
+    // print(carts.toString() + ' here');
     return cartList;
   }
 
@@ -64,23 +68,29 @@ class CartRepo {
   }
 
   void addToCartHistoryList() {
+    // print('I am addToCartHistoryList');
+
+    for (int i = 0; i < cart.length; i++) {
+      // print("History list " + cart[i] + 'maybe empy');
+      cartHistory.add(cart[i]);
+    }
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory =
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (int i = 0; i < cart.length; i++) {
-      print("History list " + cartHistory[i]);
+      //print("History list " + cartHistory[i]);
       cartHistory.add(cart[i]);
     }
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
 
-    print("The length of history list is " +
-        getCartHistoryList().length.toString());
+    // print("The length of history list is " +
+    //     getCartHistoryList().length.toString());
     for (int i = 0; i < getCartHistoryList().length; i++) {
-      print("The time for the order is " +
-          getCartHistoryList()[i].time.toString());
+      // print("The time for the order is " +
+      //     getCartHistoryList()[i].time.toString());
     }
   }
 

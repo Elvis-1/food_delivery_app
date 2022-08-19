@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
-import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/app_icon.dart';
@@ -10,9 +9,8 @@ import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
-import 'package:food_delivery/widgets/icon_and_text_widget.dart';
-import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PopuparFoodDetail extends StatelessWidget {
   int pageId;
@@ -22,8 +20,10 @@ class PopuparFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get.find<CartController>().getCartData();
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
+    // print(product.id.toString() + ' to inside details page');
     // print("Page id is " + pageId.toString());
     // print("product of id is " + product.id.toString());
     // Get.find<PopularProductController>()
@@ -42,11 +42,21 @@ class PopuparFoodDetail extends StatelessWidget {
                 child: Container(
                   height: Dimension.popularFoodContainer,
                   width: double.maxFinite,
+                  // child: CachedNetworkImage(
+                  //   imageUrl: AppConstants.POPULAR_FOOD_IMAGE + product.img!,
+                  //   // imageBuilder: (context, imageProvider) => Container(
+                  //   //   decoration: BoxDecoration(
+                  //   //     image: DecorationImage(
+                  //   //         image: imageProvider, fit: BoxFit.cover),
+                  //   //   ),
+                  //   // ),
+                  // ),
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              AppConstants.POPULAR_FOOD_IMAGE + product.img!))),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            AppConstants.POPULAR_FOOD_IMAGE + product.img!)),
+                  ),
                 )),
 
             // icon widget
@@ -204,7 +214,7 @@ class PopuparFoodDetail extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // print(product.name);
+                    //print(product.id.toString() + ' to inside details page');
                     pupularProduct.addItem(product);
                   },
                   child: Container(
