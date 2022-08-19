@@ -31,11 +31,17 @@ class CartHistoryScreen extends StatelessWidget {
     }
     print(cartItemsPerOrder.toString() + ' this is cartItemPerOrder');
 
-    List<int> cartOrderTimeToList() {
+    List<int> cartItemsPerOrderToList() {
+      // this helps us to get the number of items per order
       return cartItemsPerOrder.entries.map((e) => e.value).toList();
     }
 
-    List<int> itemsPerOrder = cartOrderTimeToList(); // 3,2,3
+    List<String> cartOrderTimeToList() {
+      // this helps us to time for items per order
+      return cartItemsPerOrder.entries.map((e) => e.key).toList();
+    }
+
+    List<int> itemsPerOrder = cartItemsPerOrderToList(); // 3,2,3
 
     var listCounter = 0;
     print(itemsPerOrder.toString() + ' yes it got here');
@@ -73,13 +79,13 @@ class CartHistoryScreen extends StatelessWidget {
               removeTop: true,
               child: ListView(children: [
                 if (itemsPerOrder.isNotEmpty)
-                  for (int i = 0; i <= itemsPerOrder.length; i++)
+                  for (int i = 0; i < itemsPerOrder.length; i++)
                     Container(
                       height: 120,
                       margin: EdgeInsets.only(bottom: Dimension.height20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           (() {
                             //  yyyy-MM-dd HH:mm:ss -- this is the format his date returned, yours may not returned this. Its a string
@@ -92,12 +98,13 @@ class CartHistoryScreen extends StatelessWidget {
                             var outPutDate = outPutFormat.format(inputDate);
                             return Text(outPutDate);
 
-                            return const Text('Date');
+                            // return const Text('Date');
                           }()),
                           SizedBox(
                             height: Dimension.height10,
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Wrap(
                                 direction: Axis.horizontal,
@@ -108,6 +115,7 @@ class CartHistoryScreen extends StatelessWidget {
                                   }
                                   return index <= 2
                                       ? Container(
+                                          margin: EdgeInsets.only(right: 10),
                                           height: 80,
                                           width: 80,
                                           decoration: BoxDecoration(
@@ -127,39 +135,46 @@ class CartHistoryScreen extends StatelessWidget {
                                         )
                                       : Container();
                                 }),
+                              ),
+                              Container(
+                                height: 80,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    SmallText(
+                                      text: 'Total',
+                                      color: AppColors.titleColor,
+                                    ),
+                                    BigText(
+                                      text: itemsPerOrder[i].toString() +
+                                          " Items",
+                                      color: AppColors.titleColor,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: Dimension.width10,
+                                            vertical: Dimension.height10 / 2),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimension.radius15 / 3),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: AppColors.mainColor),
+                                        ),
+                                        child: SmallText(
+                                            text: 'one more',
+                                            color: AppColors.mainColor),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),
-                          Container(
-                            height: 80,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SmallText(
-                                  text: 'Total',
-                                  color: AppColors.titleColor,
-                                ),
-                                BigText(
-                                  text: itemsPerOrder[i].toString() + "Items",
-                                  color: AppColors.titleColor,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: Dimension.width10,
-                                      vertical: Dimension.height10 / 2),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        Dimension.radius15 / 3),
-                                    border: Border.all(
-                                        width: 1, color: AppColors.mainColor),
-                                  ),
-                                  child: SmallText(
-                                      text: 'one more',
-                                      color: AppColors.mainColor),
-                                )
-                              ],
-                            ),
-                          )
                         ],
                       ),
                     )

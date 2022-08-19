@@ -123,7 +123,7 @@ class CartController extends GetxController {
 
   void addToHistory() {
     cartRepo.addToCartHistoryList();
-    // clear();
+    clear();
   }
 
   void clear() {
