@@ -38,8 +38,9 @@ class MyApp extends StatelessWidget {
             //     MainFoodPage(),
             initialRoute: RouteHelper.getSplashScreen(),
             getPages: RouteHelper.routes,
-
-            // 5:19
+            // part 2 6:12 -- screen of admin backend
+            // part 2 6:18 -- api versioning
+            // 6:25
           );
         });
       });

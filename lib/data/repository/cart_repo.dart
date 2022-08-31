@@ -13,7 +13,9 @@ class CartRepo {
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartlist) {
-    // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
+    // sharedPreferences.remove(AppConstants.CART_LIST);
+    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    // return;
     var time = DateTime.now().toString();
     // since this method will be called many times, set cart to empty first
     cart = [];
