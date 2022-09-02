@@ -1,3 +1,5 @@
+import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:food_delivery/data/repository/auth_repo.dart';
 import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
 import 'package:food_delivery/data/repository/recommended_food-repo.dart';
@@ -13,6 +15,8 @@ Future<void> init() async {
   Get.lazyPut(() => sharedPreferences);
   // api client
   Get.lazyPut(() => ApiClient(appBaseUrl: 'https://foodapp.ifnotgod.com/'));
+  Get.lazyPut(
+      () => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   // repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
@@ -20,6 +24,7 @@ Future<void> init() async {
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   // controllers
+  Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedFoodController(recommendedFoodRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));

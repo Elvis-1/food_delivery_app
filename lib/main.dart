@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_food_controller.dart';
+import 'package:food_delivery/pages/auth/signin_screen.dart';
 import 'package:food_delivery/pages/auth/signup_screen.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/popualar_food_detail.dart';
@@ -34,14 +35,14 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(),
-            home: SignUpScreen(),
+            home: SignInScreen(),
             //HomePage(),
             //     MainFoodPage(),
             // initialRoute: RouteHelper.getSplashScreen(),
             // getPages: RouteHelper.routes,
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
-            // 7:52
+            // 9:08
           );
         });
       });
