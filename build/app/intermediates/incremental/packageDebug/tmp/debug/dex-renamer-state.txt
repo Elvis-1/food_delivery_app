@@ -1,4 +1,4 @@
-#Fri Sep 02 12:46:28 WAT 2022
+#Mon Sep 05 10:40:55 WAT 2022
 base.0=C\:\\Users\\elvis\\Documents\\elvis\\flutter files\\my_food_app\\food_delivery\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

@@ -17,5 +17,6 @@ class AppConstants {
   static const String CART_HISTORY_LIST = "cart-history-list";
 
   // auth constants
-  static const String REGISTRATION_URI = 'api/2/popularfood';
+  static const String SIGNUP_URI = 'api/signup';
+  static const String SIGNIN_URI = 'api/signin';
 }

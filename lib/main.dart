@@ -42,7 +42,8 @@ class MyApp extends StatelessWidget {
             // getPages: RouteHelper.routes,
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
-            // 9:08
+            // 9:31 auth back
+            // 9:56
           );
         });
       });

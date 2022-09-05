@@ -12,7 +12,7 @@ class AuthRepo {
 
   Future<Response> registration(SignUpBody signUpBody) async {
     return await apiClient.postData(
-        AppConstants.REGISTRATION_URI, signUpBody.toJson());
+        AppConstants.SIGNUP_URI, signUpBody.toJson());
   }
 
   saveUserToken(String token) async {
