@@ -35,15 +35,15 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(),
-            home: SignInScreen(),
+            //  home: SignInScreen(),
             //HomePage(),
             //     MainFoodPage(),
-            // initialRoute: RouteHelper.getSplashScreen(),
-            // getPages: RouteHelper.routes,
+            initialRoute: RouteHelper.getSplashScreen(),
+            getPages: RouteHelper.routes,
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
             // 9:31 auth back
-            // 9:56
+            // 11:06
           );
         });
       });

@@ -89,9 +89,11 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       // your password
                       AppTextField(
-                          hintText: 'Password',
-                          icon: Icons.password_sharp,
-                          textController: passwordController),
+                        hintText: 'Password',
+                        icon: Icons.password_sharp,
+                        textController: passwordController,
+                        isObscure: true,
+                      ),
                       SizedBox(
                         height: Dimension.height20,
                       ),

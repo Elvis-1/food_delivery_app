@@ -7,12 +7,14 @@ import 'package:food_delivery/utils/dimensions.dart';
 class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
+  bool isObscure;
   IconData icon;
   AppTextField(
       {Key? key,
       required this.hintText,
       required this.icon,
-      required this.textController})
+      required this.textController,
+      this.isObscure = false})
       : super(key: key);
 
   @override
@@ -23,16 +25,17 @@ class AppTextField extends StatelessWidget {
         right: Dimension.width20,
       ),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimension.raduis30),
+          borderRadius: BorderRadius.circular(Dimension.radius15),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-                spreadRadius: 7,
-                blurRadius: 10,
-                offset: Offset(1, 10),
+                spreadRadius: 1,
+                blurRadius: 3,
+                offset: Offset(1, 1),
                 color: Colors.grey.withOpacity(0.2))
           ]),
       child: TextField(
+        obscureText: isObscure ? true : false,
         controller: textController,
         decoration: InputDecoration(
           // hintText,
@@ -45,16 +48,16 @@ class AppTextField extends StatelessWidget {
 
           // forcus border
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimension.raduis30),
+              borderRadius: BorderRadius.circular(Dimension.radius15),
               borderSide: BorderSide(width: 1.0, color: Colors.white)),
           // enabled border
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimension.raduis30),
+              borderRadius: BorderRadius.circular(Dimension.radius15),
               borderSide: BorderSide(width: 1.0, color: Colors.white)),
 
           // border
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimension.raduis30),
+            borderRadius: BorderRadius.circular(Dimension.radius15),
           ),
         ),
       ),

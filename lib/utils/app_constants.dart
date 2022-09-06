@@ -1,7 +1,7 @@
 class AppConstants {
   static const String APP_NAME = 'IFNOTFOOD';
   static const int APP_VERSION = 1;
-  static const String TOKEN = 'IFNOTGOD';
+  static const String TOKEN = '';
 
   static const String BASE_URI = 'https://foodapp.ifnotgod.com/';
 
@@ -19,4 +19,7 @@ class AppConstants {
   // auth constants
   static const String SIGNUP_URI = 'api/signup';
   static const String SIGNIN_URI = 'api/signin';
+
+  static const String PHONE = '';
+  static const String PASSWORD = '';
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_icon.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/account_widget.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -99,7 +103,7 @@ class AccountScreen extends StatelessWidget {
                     ),
                     // message
                     AccountWidget(
-                      bigText: BigText(text: 'Elvis'),
+                      bigText: BigText(text: 'Messages'),
                       appIcon: AppIcon(
                         backgroungColor: Colors.redAccent,
                         iconColor: Colors.white,
@@ -108,6 +112,30 @@ class AccountScreen extends StatelessWidget {
                         size: Dimension.height10 * 5,
                       ),
                     ),
+                    SizedBox(
+                      height: Dimension.height20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear;
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getInitial());
+                        }
+                      },
+                      child: AccountWidget(
+                        bigText: BigText(text: 'Logout'),
+                        appIcon: AppIcon(
+                          backgroungColor: Colors.redAccent,
+                          iconColor: Colors.white,
+                          icon: Icons.logout,
+                          iconSize: Dimension.height10 * 5 / 2,
+                          size: Dimension.height10 * 5,
+                        ),
+                      ),
+                    ),
+
                     SizedBox(
                       height: Dimension.height20,
                     ),

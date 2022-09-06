@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_delivery/pages/account/account_screen.dart';
+import 'package:food_delivery/pages/auth/signin_screen.dart';
 import 'package:food_delivery/pages/auth/signup_screen.dart';
 import 'package:food_delivery/pages/cart/cart_history_screen.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
@@ -48,7 +49,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      SignUpScreen(),
+      Container(
+        child: Text("Histroy page"),
+      ),
       CartHistoryScreen(),
       AccountScreen()
     ];
