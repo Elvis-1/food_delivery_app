@@ -27,11 +27,12 @@ class RecommendedFoodController extends GetxController {
 
   Future<void> getRecommendedFoodList() async {
     Response response = await recommendedFoodRepo.GetRecommendedFoodList();
+    print('recommendeded ' + response.body);
     final extract = response.body as Map<String, dynamic>;
     // print(extract);
     // print(extract['data']);
     final extractedData = extract['data'] as List;
-    // print(extractedData);
+    print('this is it ' + extractedData.toString());
     if (response.statusCode == 200) {
       _recommendedProductList = [];
 

@@ -29,9 +29,10 @@ class PopularProductController extends GetxController {
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.GetPopularProductList();
+    print(response.body['data']);
     final extract = response.body as Map<String, dynamic>;
-    // print(extract);
-    // print(extract['data']);
+    print(extract);
+    print(extract['data']);
     final extractedData = extract['data'] as List;
     // print(extractedData);
     if (response.statusCode == 200) {

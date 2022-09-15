@@ -4,6 +4,7 @@ import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/models/signup_body.dart';
 import 'package:food_delivery/pages/auth/signup_screen.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -38,7 +39,8 @@ class SignInScreen extends StatelessWidget {
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
             print('Successful Login');
-            Get.toNamed(RouteHelper.getInitial());
+            Get.to(HomePage());
+            //Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }
