@@ -14,7 +14,7 @@ class CartRepo {
 
   void addToCartList(List<CartModel> cartlist) {
     // sharedPreferences.remove(AppConstants.CART_LIST);
-    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    //  sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     // return;
     var time = DateTime.now().toString();
     // since this method will be called many times, set cart to empty first
@@ -55,6 +55,7 @@ class CartRepo {
   }
 
   List<CartModel> getCartHistoryList() {
+    // print('got herrrrrr length is  ' + cartHistory.length.toString());
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory = [];
       cartHistory =
@@ -70,8 +71,8 @@ class CartRepo {
   }
 
   void addToCartHistoryList() {
-    // print('I am addToCartHistoryList');
-
+    // print('in addToCartHistory function');
+    sharedPreferences.remove(AppConstants.CART_LIST);
     for (int i = 0; i < cart.length; i++) {
       // print("History list " + cart[i] + 'maybe empy');
       cartHistory.add(cart[i]);
@@ -83,22 +84,26 @@ class CartRepo {
     for (int i = 0; i < cart.length; i++) {
       //print("History list " + cartHistory[i]);
       cartHistory.add(cart[i]);
+      //print("History list added" + cartHistory[i].length.toString());
     }
+    // print("History list added" + cartHistory.length.toString());
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
+    // getCartHistoryList(); // for debugging purposes
 
     // print("The length of history list is " +
     //     getCartHistoryList().length.toString());
-    for (int i = 0; i < getCartHistoryList().length; i++) {
-      // print("The time for the order is " +
-      //     getCartHistoryList()[i].time.toString());
-    }
+
+    // for (int i = 0; i < getCartHistoryList().length; i++) {
+    //   print("The time for the order is " +
+    //       getCartHistoryList()[i].time.toString());
+    // }
   }
 
   void removeCart() {
     cart = [];
-    cartHistory = [];
+    //  cartHistory = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
   }
 

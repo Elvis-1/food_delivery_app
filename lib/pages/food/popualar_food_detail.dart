@@ -20,7 +20,7 @@ class PopuparFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get.find<CartController>().getCartData();
+    Get.find<CartController>().getCartData();
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
     // print(product.id.toString() + ' to inside details page');
@@ -55,7 +55,9 @@ class PopuparFoodDetail extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                            AppConstants.POPULAR_FOOD_IMAGE + product.img!)),
+                            // "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            AppConstants.POPULAR_FOOD_IMAGE +
+                                product.products!.image!)),
                   ),
                 )),
 
@@ -136,7 +138,7 @@ class PopuparFoodDetail extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppColumn(text: product.name!),
+                        AppColumn(text: product.products!.name!),
                         SizedBox(
                           height: Dimension.height20,
                         ),
@@ -147,7 +149,7 @@ class PopuparFoodDetail extends StatelessWidget {
                         Expanded(
                           child: SingleChildScrollView(
                             child: ExpandableTextWidget(
-                                text: product.description!),
+                                text: product.products!.description!),
                           ),
                         ),
                       ],
@@ -224,7 +226,7 @@ class PopuparFoodDetail extends StatelessWidget {
                           right: Dimension.width20,
                           left: Dimension.width20),
                       child: BigText(
-                        text: "N ${product.price} | Add to cart",
+                        text: "N ${product.products!.price} | Add to cart",
                         color: Colors.white,
                       ),
                       decoration: BoxDecoration(

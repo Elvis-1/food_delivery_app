@@ -1,6 +1,7 @@
 import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/models/product_model.dart';
+import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,10 @@ class CartController extends GetxController {
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     // print(product.name! + ' from cart controller');
-    if (_items.containsKey(product.id)) {
-      _items.update(product.id!, (value) {
+    if (_items.containsKey(
+      product.products!.id,
+    )) {
+      _items.update(product.products!.id!, (value) {
         totalQuantity = value.quantity! + quantity;
         return CartModel(
             id: value.id,
@@ -32,20 +35,20 @@ class CartController extends GetxController {
             product: product);
       });
       if (totalQuantity <= 0) {
-        _items.remove(product.id);
+        _items.remove(product.products!.id);
       }
     } else {
       if (quantity > 0) {
-        _items.putIfAbsent(product.id!, () {
+        _items.putIfAbsent(product.products!.id!, () {
           // _items.forEach((key, value) {
           //   print('The quantity of product added is ' + value.quantity.toString());
           // });
           return CartModel(
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              stars: product.stars,
-              img: product.img,
+              id: product.products!.id,
+              name: product.products!.name,
+              price: product.products!.price,
+              stars: product.products!.stars,
+              img: product.products!.image,
               isExist: true,
               quantity: quantity,
               time: DateTime.now().toString(),
@@ -66,7 +69,7 @@ class CartController extends GetxController {
   }
 
   bool existIncart(ProductModel product) {
-    if (_items.containsKey(product.id)) {
+    if (_items.containsKey(product.products!.id)) {
       return true;
     }
     return false;
@@ -74,9 +77,11 @@ class CartController extends GetxController {
 
   int getQuantity(ProductModel product) {
     var quantity = 0;
-    if (_items.containsKey(product.id)) {
+    if (_items.containsKey(
+      product.products!.id,
+    )) {
       _items.forEach((key, value) {
-        if (key == product.id) {
+        if (key == product.products!.id) {
           quantity = value.quantity!;
         }
       });
@@ -117,7 +122,12 @@ class CartController extends GetxController {
     storageItems = items;
     // print("Length of cart of cart items is " + storageItems.length.toString());
     for (int i = 0; i < storageItems.length; i++) {
-      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+      _items.putIfAbsent(
+          1
+          //product!.product!.id!
+
+          ,
+          () => storageItems[i]);
     }
   }
 

@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.find<PopularProductController>().getPopularProductList();
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedFoodController>(builder: (_) {
@@ -35,15 +36,15 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(),
-            home: SignInScreen(),
+            // home: SignInScreen(),
             //const HomePage(),
             //     MainFoodPage(),
-            // initialRoute: RouteHelper.getSplashScreen(),
-            //getPages: RouteHelper.routes,
+            initialRoute: RouteHelper.getSplashScreen(),
+            getPages: RouteHelper.routes,
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
             // 9:31 auth back
-            // 11:44
+            // 1:23
           );
         });
       });

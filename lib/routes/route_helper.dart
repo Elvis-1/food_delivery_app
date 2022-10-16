@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:food_delivery/pages/address/add_address_screen.dart';
 import 'package:food_delivery/pages/auth/signin_screen.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/popualar_food_detail.dart';
@@ -16,6 +17,8 @@ class RouteHelper {
   static const cartPage = '/cart-page';
   static const siginPage = '/sign-in';
 
+  static const addAddress = '/add-address';
+
   static String getPopularFood(int pageId, String page) =>
       '$popularFood?pageId=$pageId&page=$page';
   static String getSplashScreen() => '$splashScreen';
@@ -24,6 +27,7 @@ class RouteHelper {
   static String getInitial() => '$initial';
   static String getCartPage() => '$cartPage';
   static String getSigninScreen() => '$siginPage';
+  static String getAddAddressScreen() => '$addAddress';
 
   static List<GetPage> routes = [
     GetPage(name: splashScreen, page: () => SplashScreen()),
@@ -56,6 +60,12 @@ class RouteHelper {
         name: siginPage,
         page: () {
           return SignInScreen();
+        },
+        transition: Transition.circularReveal),
+    GetPage(
+        name: addAddress,
+        page: () {
+          return AddAddressScreen();
         },
         transition: Transition.circularReveal)
   ];

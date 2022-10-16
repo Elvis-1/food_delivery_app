@@ -1,11 +1,13 @@
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;
   final String appBaseUrl;
   late SharedPreferences sharedPreferences;
+  // headers: headers ?? _mainHeaders
   late Map<String, String> _mainHeaders;
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
@@ -28,7 +30,10 @@ class ApiClient extends GetConnect implements GetxService {
   Future<Response> getData(String uri, {Map<String, String>? headers}) async {
     try {
       Response response = await get(uri, headers: headers ?? _mainHeaders);
-      print('in get data function' + response.body);
+      // print('in get data function');
+      //Response response = await get(Uri.parse(AppConstants.BASE_URI + uri));
+      // var response = new Response();
+      // print('in get data function' + response.body.toString());
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

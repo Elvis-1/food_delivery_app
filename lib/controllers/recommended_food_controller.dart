@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
 import 'package:food_delivery/data/repository/recommended_food-repo.dart';
-import 'package:food_delivery/models/product_model.dart';
+import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
+
+import '../models/product_model.dart';
 
 class RecommendedFoodController extends GetxController {
   RecommendedFoodRepo recommendedFoodRepo;
@@ -26,38 +28,48 @@ class RecommendedFoodController extends GetxController {
   int get inCartItems => _inCartItems + _quantity;
 
   Future<void> getRecommendedFoodList() async {
-    Response response = await recommendedFoodRepo.GetRecommendedFoodList();
-    print('recommendeded ' + response.body);
-    final extract = response.body as Map<String, dynamic>;
-    // print(extract);
-    // print(extract['data']);
-    final extractedData = extract['data'] as List;
-    print('this is it ' + extractedData.toString());
-    if (response.statusCode == 200) {
-      _recommendedProductList = [];
+    try {
+      Response response = await recommendedFoodRepo.GetRecommendedFoodList();
+      // print(response.body);
+      final extract = response.body as Map<String, dynamic>;
+      // print(extract);
+      // print(extract['data']);
+      final extractedData = extract['data'] as List;
+      // print(extractedData[0]['product_type']);
+      // print('this is it ' + extractedData.toString());
+      if (response.statusCode == 200) {
+        _recommendedProductList = [];
+        var pro = ProductModel.fromJson(response.body);
+        //print(pro.data![0].product_type);
+        // var data = ProductData.fromJson(response.body);
 
-      extractedData.forEach((
-        element,
-      ) {
+        // print('here is recom' + pro.data.toString());
         // print('The IMAGE' + element['products']['image']);
-        _recommendedProductList.add(ProductModel(
-            id: element['products']['id'],
-            name: element['products']['name'],
-            description: element['products']['description'],
-            price: element['products']['price'],
-            stars: element['products']['stars'],
-            img: element['products']['image'],
-            location: element['products']['location'],
-            typeId: element['product_id']));
-      });
-      // print(_popularProductList);
-      // print('empty' + _popularProductList.last.name!);
-      _isLoaded = true;
-      update();
-      // print('Working');
-    } else {
-      // print('Not Working');
+        _recommendedProductList.addAll(Product.fromJson(response.body).data);
+        // print('hreee' + Product.fromJson(response.body).data.toString());
+        _isLoaded = true;
+        update();
+        // ProductModel(
+        //   id: element['products']['id'] ?? 5,
+        //   name: element['products']['name'] ?? 'nmee',
+        //   description: element['products']['description'] ?? "description",
+        //   price: element['products']['price'] ?? '900',
+        //   stars: element['products']['stars'] ?? '7',
+        //   img: element['products']['image'] ??
+        //       "https://media.istockphoto.com/photos/food-backgrounds-table-filled-with-large-variety-of-food-picture-id1155240408?k=20&m=1155240408&s=612x612&w=0&h=Zvr3TwVQ-wlfBnvGrgJCtv-_P_LUcIK301rCygnirbk=",
+        //   location: element['products']['location'] ?? "location",
+        //   typeId: element['product_id'] ?? '7'));
+
+        //  }
+      }
+    } catch (e) {
+      print('recommended food error ' + e.toString());
     }
+
+    // print(_popularProductList);
+    // print('empty' + _popularProductList.last.name!);
+
+    // print('Working');
   }
 
   void setQuantity(bool isIncrement) {

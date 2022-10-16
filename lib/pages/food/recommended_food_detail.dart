@@ -24,7 +24,7 @@ class RecommendedFoodDetail extends StatelessWidget {
         Get.find<RecommendedFoodController>().recommendedProductList[pageId];
     Get.find<PopularProductController>()
         .initProduct(recommendedfood, Get.find<CartController>());
-    print("Page id is " + recommendedfood.id.toString());
+    print("Page id is " + recommendedfood.products!.id.toString());
     return Scaffold(
         backgroundColor: Colors.white,
         // automaticallyImplyLeading: false,
@@ -99,7 +99,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                   padding: EdgeInsets.only(top: 5, bottom: 10),
                   child: Center(
                       child: BigText(
-                          size: Dimension.font26, text: recommendedfood.name!)),
+                          size: Dimension.font26,
+                          text: recommendedfood.products!.name!)),
                 ),
               ),
               pinned: true,
@@ -107,7 +108,8 @@ class RecommendedFoodDetail extends StatelessWidget {
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network(
-                  AppConstants.RECOMMENDED_FOOD_IMAGE + recommendedfood.img!,
+                  AppConstants.RECOMMENDED_FOOD_IMAGE +
+                      recommendedfood.products!.image!,
                   width: double.maxFinite,
                   fit: BoxFit.cover,
                 ),
@@ -120,7 +122,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     margin: EdgeInsets.only(
                         left: Dimension.width20, right: Dimension.width20),
                     child: ExpandableTextWidget(
-                      text: recommendedfood.description!,
+                      text: recommendedfood.products!.description!,
                     ),
                   )
                 ],
@@ -154,7 +156,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                         ),
                       ),
                       BigText(
-                        text: 'N ${recommendedfood.price} ' +
+                        text: 'N ${recommendedfood.products!.price} ' +
                             ' X ' +
                             ' ${controller.inCartItems} ',
                         color: AppColors.mainBlackColor,
@@ -209,7 +211,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          print(recommendedfood.name);
+                          //print(recommendedfood..name);
                           controller.addItem(recommendedfood);
                         },
                         child: Container(
@@ -219,7 +221,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                                 right: Dimension.width20,
                                 left: Dimension.width20),
                             child: BigText(
-                              text: "\$${recommendedfood.price} | Add to cart",
+                              text:
+                                  "\$${recommendedfood.products!.price} | Add to cart",
                               color: Colors.white,
                             ),
                             decoration: BoxDecoration(

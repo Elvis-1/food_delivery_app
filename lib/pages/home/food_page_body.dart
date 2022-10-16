@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_food_controller.dart';
+import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/models/product_model.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
@@ -152,10 +153,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: NetworkImage(
+                                        // "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=600"
                                         AppConstants.POPULAR_FOOD_IMAGE +
                                             popularfood
                                                 .popularProductList[index]
-                                                .img!),
+                                                .products!
+                                                .image!),
                                   )),
                             ),
 
@@ -199,7 +202,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                       children: [
                                         BigText(
                                           text: popularfood
-                                              .popularProductList[index].name!,
+                                              .popularProductList[index]
+                                              .products!
+                                              .name!,
                                           size: Dimension.font26,
                                         ),
                                         SizedBox(
@@ -303,7 +308,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(AppConstants.RECOMMENDED_FOOD_IMAGE +
-                        recommended.img!))),
+                        recommended.products!.image!))),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -331,7 +336,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   left: Dimension.width15,
                 ),
                 child: AppColumn(
-                  text: recommended.name!,
+                  text: recommended.products!.name!,
                 ),
               ),
             ),

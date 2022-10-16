@@ -5,6 +5,7 @@ import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
 import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/models/product_model.dart';
+import 'package:food_delivery/models/product.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
@@ -28,37 +29,49 @@ class PopularProductController extends GetxController {
   bool get isLoaded => _isLoaded;
 
   Future<void> getPopularProductList() async {
-    Response response = await popularProductRepo.GetPopularProductList();
-    print(response.body['data']);
-    final extract = response.body as Map<String, dynamic>;
-    print(extract);
-    print(extract['data']);
-    final extractedData = extract['data'] as List;
-    // print(extractedData);
-    if (response.statusCode == 200) {
-      _popularProductList = [];
+    //print('yea');
+    try {
+      Response response = await popularProductRepo.GetPopularProductList();
+      //print(response.body);
+      //final extract = response.body as Map<String, dynamic>;
+      //print(extract);
+      // print(extract['data']);
+      // final extractedData = extract['data'] as List;
+      // print(extractedData);
+      if (response.statusCode == 200) {
+        // print('got hreee');
+        _popularProductList = [];
+        // print('in popular food' + Data.fromJson(response.body).toString());
+        _popularProductList.addAll(Product.fromJson(response.body).data);
+        // var data = ProductData.fromJson(response.body);
+        // print('here is ' + Product.fromJson(response.body).data.toString());
+        //  print('in popular food ' + data.product!.location.toString());
+        _popularProductList.forEach((element) {});
+        // extractedData.forEach((
+        //   element,
+        // ) {
+        //   // print('The IMAGE' + element['products']['image']);
+        //   _popularProductList.add(ProductModel(
+        //       id: element['products']['id'] ?? 6,
+        //       name: element['products']['name'] ?? 'name',
+        //       description:
+        //           element['products']['description'] ?? 'Any descriptiion',
+        //       price: element['products']['price'] ?? "600",
+        //       stars: element['products']['stars'] ?? '6',
+        //       img: element['products']['image'] ??
+        //           "https://media.istockphoto.com/photos/food-backgrounds-table-filled-with-large-variety-of-food-picture-id1155240408?k=20&m=1155240408&s=612x612&w=0&h=Zvr3TwVQ-wlfBnvGrgJCtv-_P_LUcIK301rCygnirbk=",
+        //       location: element['products']['location'] ?? 'Anywhere',
+        //       typeId: element['product_id'] ?? '2'));
+        // });
 
-      extractedData.forEach((
-        element,
-      ) {
-        // print('The IMAGE' + element['products']['image']);
-        _popularProductList.add(ProductModel(
-            id: element['products']['id'],
-            name: element['products']['name'],
-            description: element['products']['description'],
-            price: element['products']['price'],
-            stars: element['products']['stars'],
-            img: element['products']['image'],
-            location: element['products']['location'],
-            typeId: element['product_id']));
-      });
-      // print(_popularProductList);
-      // print('empty' + _popularProductList.last.name!);
-      _isLoaded = true;
-      update();
-      // print('Working');
-    } else {
-      // print('Not Working');
+        // print(_popularProductList);
+        // print('empty' + _popularProductList.last.name!);
+        _isLoaded = true;
+        update();
+        // print('Working');
+      }
+    } catch (e) {
+      print('popular food error ' + e.toString());
     }
   }
 

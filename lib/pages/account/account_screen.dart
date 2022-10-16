@@ -34,7 +34,7 @@ class AccountScreen extends StatelessWidget {
       ),
       body: GetBuilder<UserController>(builder: (userController) {
         return _userLoggedIn
-            ? (userController.isLoading
+            ? (!userController.isLoading
                 ? Container(
                     width: double.maxFinite,
                     margin: EdgeInsets.only(top: Dimension.height20),
@@ -59,7 +59,7 @@ class AccountScreen extends StatelessWidget {
                                 // name
                                 AccountWidget(
                                   bigText: BigText(
-                                      text: userController.userInfoModel.name),
+                                      text: userController.userInfoModel!.name),
                                   appIcon: AppIcon(
                                     backgroungColor: AppColors.mainColor,
                                     iconColor: Colors.white,
@@ -74,7 +74,8 @@ class AccountScreen extends StatelessWidget {
                                 // phone
                                 AccountWidget(
                                   bigText: BigText(
-                                      text: userController.userInfoModel.phone),
+                                      text:
+                                          userController.userInfoModel!.phone),
                                   appIcon: AppIcon(
                                     backgroungColor: AppColors.yellowColor,
                                     iconColor: Colors.white,
@@ -89,7 +90,8 @@ class AccountScreen extends StatelessWidget {
                                 // email
                                 AccountWidget(
                                   bigText: BigText(
-                                      text: userController.userInfoModel.email),
+                                      text:
+                                          userController.userInfoModel!.email),
                                   appIcon: AppIcon(
                                     backgroungColor: AppColors.yellowColor,
                                     iconColor: Colors.white,
@@ -136,6 +138,7 @@ class AccountScreen extends StatelessWidget {
                                         .userLoggedIn()) {
                                       Get.find<AuthController>()
                                           .clearSharedData();
+
                                       Get.find<CartController>().clear;
                                       Get.find<CartController>()
                                           .clearCartHistory();
@@ -165,7 +168,46 @@ class AccountScreen extends StatelessWidget {
                   )
                 : CustomLoader())
             : Container(
-                child: Center(child: Text('You don\'t have an account yet')),
+                child: Center(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: double.maxFinite,
+                      height: Dimension.height20 * 8,
+                      margin: EdgeInsets.only(
+                          left: Dimension.width20, right: Dimension.width20),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimension.radius20),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                  "assets/image/signintocontinue.png"))),
+                    ),
+                    GestureDetector(
+                      onTap: () => Get.toNamed(RouteHelper.getSigninScreen()),
+                      child: Container(
+                        width: double.maxFinite,
+                        height: Dimension.height20 * 5,
+                        margin: EdgeInsets.only(
+                            left: Dimension.width20, right: Dimension.width20),
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius:
+                              BorderRadius.circular(Dimension.radius20),
+                        ),
+                        child: Center(
+                          child: BigText(
+                            text: 'Sign In',
+                            color: Colors.white,
+                            size: Dimension.font26,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
               );
       }),
     );
