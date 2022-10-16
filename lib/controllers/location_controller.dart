@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:food_delivery/data/repository/auth_repo.dart';
 import 'package:food_delivery/data/repository/location_repo.dart';
 import 'package:geocoding/geocoding.dart';
@@ -20,19 +22,22 @@ class LocationController extends GetxController implements GetxService {
   Position get position => _position;
   Position get pickPosition => _pickPosition;
 
-  // Placemark _placemark = Placemark();
-  // Placemark _pickPlacemark = Placemark();
+  Placemark _placemark = Placemark();
+  Placemark _pickPlacemark = Placemark();
+
+  Placemark get pickPlacemark => _pickPlacemark;
+  Placemark get placemark => _placemark;
 
   List<AddressModel> _addressList = [];
   List<AddressModel> get addressList => _addressList;
 
   late List<AddressModel> _allAddressList;
 
-  List<String> addTypeList = ["Home", "Office", "Others"];
-  int _addressTypeIndex = 0;
+  List<String> _addressTypeList = ["Home", "Office", "Others"];
+  List<String> get addressTypeList => _addressTypeList;
 
-  Map<String, dynamic> _getAddress = {};
-  Map<String, dynamic> get getAddress => _getAddress;
+  int _addressTypeIndex = 0;
+  int get addressTypeIndex => _addressTypeIndex;
 
   bool _updateAddressData = true;
   bool _changeAddress = true;
@@ -73,6 +78,10 @@ class LocationController extends GetxController implements GetxService {
         if (_changeAddress) {
           String _address = await getAddressFromGeocode(
               LatLng(position.target.latitude, position.target.longitude));
+
+          fromAddress
+              ? _placemark = Placemark(name: _address)
+              : _pickPlacemark = Placemark(name: _address);
         }
       } catch (e) {
         print(e);
@@ -89,5 +98,28 @@ class LocationController extends GetxController implements GetxService {
       print('error getting response form server');
     }
     return _address;
+  }
+
+  Map<String, dynamic> _getAddress = {};
+  Map<String, dynamic> get getAddress => _getAddress;
+
+  AddressModel getUserAddress() {
+    late AddressModel _addressModel;
+    // converting to a map using json decode
+    _getAddress = jsonDecode(locationRepo.getUserAddress());
+
+    try {
+      _addressModel =
+          AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
+    } catch (e) {
+      print(e);
+    }
+
+    return _addressModel;
+  }
+
+  void setAddressTypeIndex(int index) {
+    _addressTypeIndex = index;
+    update();
   }
 }

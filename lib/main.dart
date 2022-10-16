@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
             // 9:31 auth back
-            // 1:23
+            // 2:11
           );
         });
       });
