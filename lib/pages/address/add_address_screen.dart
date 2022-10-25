@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -7,6 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
+import 'package:food_delivery/models/address_model.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
@@ -40,6 +40,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
               double.parse(
@@ -75,10 +76,10 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           return GetBuilder<LocationController>(
             builder: (locationController) {
               _addressController.text =
-                  '${locationController.placemark.name ?? ""}'
-                  '${locationController.placemark.locality ?? ""}'
-                  '${locationController.placemark.postalCode ?? ""}'
-                  '${locationController.placemark.country ?? ""}';
+                  '${locationController.placemark.name ?? "My address name"}'
+                  '${locationController.placemark.locality ?? " locality"}'
+                  '${locationController.placemark.postalCode ?? " Postal code"}'
+                  '${locationController.placemark.country ?? " Country"}';
               print("address in my view is " + _addressController.text);
               return SingleChildScrollView(
                 child: Column(
@@ -103,6 +104,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           compassEnabled: false,
                           indoorViewEnabled: true,
                           mapToolbarEnabled: false,
+                          myLocationEnabled: true,
                           onCameraIdle: () {
                             locationController.updatePosition(
                                 _cameraPosition, true);
@@ -214,7 +216,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         },
       ),
       bottomNavigationBar: GetBuilder<LocationController>(
-        builder: (controller) {
+        builder: (locationController) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -238,16 +240,39 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       onTap: () {
                         //print(recommendedfood..name);
                         // controller.addItem(recommendedfood);
+                        AddressModel _addressModel = AddressModel(
+                            addressType: locationController.addressTypeList[
+                                locationController.addressTypeIndex],
+                            contactPersonName: _contactPersonName.text,
+                            contactPersonNumber: _contactPersonNumber.text,
+                            address: _addressController.text,
+                            latitude:
+                                locationController.position.latitude.toString(),
+                            longitude: locationController.position.longitude
+                                .toString());
+
+                        locationController
+                            .addAddress(_addressModel)
+                            .then((value) {
+                          if (value.isSuccess) {
+                            Get.toNamed(RouteHelper.getInitial());
+                            Get.snackbar('Address', "Added Successfully");
+                          } else {
+                            Get.snackbar('Address', "Couldn't save address");
+                          }
+                        });
                       },
                       child: Container(
+                          height: Dimension.height20 * 6,
                           padding: EdgeInsets.only(
                               top: Dimension.height20,
                               bottom: Dimension.height20,
                               right: Dimension.width20,
                               left: Dimension.width20),
                           child: BigText(
-                            text: "\$'{text}' | Add to cart",
+                            text: "Save Address",
                             color: Colors.white,
+                            size: 20,
                           ),
                           decoration: BoxDecoration(
                             color: AppColors.mainColor,

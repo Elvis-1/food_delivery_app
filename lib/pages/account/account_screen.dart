@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
 import 'package:food_delivery/models/user_model.dart';
 import 'package:food_delivery/routes/route_helper.dart';
@@ -104,17 +105,43 @@ class AccountScreen extends StatelessWidget {
                                   height: Dimension.height20,
                                 ),
                                 // address
-                                AccountWidget(
-                                  bigText:
-                                      BigText(text: 'fill in your address'),
-                                  appIcon: AppIcon(
-                                    backgroungColor: AppColors.mainColor,
-                                    iconColor: Colors.white,
-                                    icon: Icons.location_on,
-                                    iconSize: Dimension.height10 * 5 / 2,
-                                    size: Dimension.height10 * 5,
-                                  ),
-                                ),
+                                GetBuilder<LocationController>(
+                                    builder: (locationController) {
+                                  if (_userLoggedIn &&
+                                      locationController.addressList.isEmpty) {
+                                    return GestureDetector(
+                                      onTap: () => Get.toNamed(
+                                          RouteHelper.getAddAddressScreen()),
+                                      child: AccountWidget(
+                                        bigText: BigText(
+                                            text: 'fill in your address'),
+                                        appIcon: AppIcon(
+                                          backgroungColor: AppColors.mainColor,
+                                          iconColor: Colors.white,
+                                          icon: Icons.location_on,
+                                          iconSize: Dimension.height10 * 5 / 2,
+                                          size: Dimension.height10 * 5,
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return GestureDetector(
+                                      onTap: () => Get.toNamed(
+                                          RouteHelper.getAddAddressScreen()),
+                                      child: AccountWidget(
+                                        bigText: BigText(text: 'Your Address'),
+                                        appIcon: AppIcon(
+                                          backgroungColor: AppColors.mainColor,
+                                          iconColor: Colors.white,
+                                          icon: Icons.location_on,
+                                          iconSize: Dimension.height10 * 5 / 2,
+                                          size: Dimension.height10 * 5,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                }),
+
                                 SizedBox(
                                   height: Dimension.height20,
                                 ),
@@ -142,6 +169,8 @@ class AccountScreen extends StatelessWidget {
                                       Get.find<CartController>().clear;
                                       Get.find<CartController>()
                                           .clearCartHistory();
+                                      Get.find<LocationController>()
+                                          .clearAddressList();
                                       Get.offNamed(
                                           RouteHelper.getSigninScreen());
                                     }

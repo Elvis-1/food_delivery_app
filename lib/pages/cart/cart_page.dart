@@ -316,10 +316,11 @@ class CartPage extends StatelessWidget {
                         onTap: () {
                           if (Get.find<AuthController>().userLoggedIn()) {
                             if (Get.find<LocationController>()
-                                .getAddress
+                                .addressList
                                 .isEmpty) {
-                              print('tapped');
                               Get.toNamed(RouteHelper.getAddAddressScreen());
+                            } else {
+                              Get.offNamed(RouteHelper.getInitial());
                             }
 
                             cart.addToHistory();

@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
             // 9:31 auth back
-            // 2:11
+            // 2:24
+            // Throughout the application process and in your career, keep blessing God. When things seem slow or are not working, keep blessing God. Bless God that you are the salt of the earth, bless God that you are the light of the world, bless God you are a city set on an hill that cannot be hidden. Psalm 34. Ensure you transfer this to your vn
           );
         });
       });
