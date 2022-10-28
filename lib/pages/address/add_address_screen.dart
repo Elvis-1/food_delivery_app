@@ -6,6 +6,7 @@ import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
 import 'package:food_delivery/models/address_model.dart';
+import 'package:food_delivery/pages/address/pick_address_map.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -40,6 +41,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      Get.find<LocationController>().getUserAddress();
+      if (Get.find<LocationController>().getUserAddressFromLocalStorage() ==
+          "") {
+        Get.find<LocationController>()
+            .saveUserAddress(Get.find<LocationController>().addressList.last);
+      }
       Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
@@ -100,12 +107,22 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         GoogleMap(
                           initialCameraPosition: CameraPosition(
                               target: _initialPosition, zoom: 17),
+                          onTap: (LatLng) {
+                            Get.toNamed(RouteHelper.getPickAddressMapScreen(),
+                                arguments: PickAddressMap(
+                                  fromAdress: true,
+                                  fromSignUp: false,
+                                  googleMapController:
+                                      locationController.mapController,
+                                ));
+                          },
                           zoomControlsEnabled: false,
                           compassEnabled: false,
                           indoorViewEnabled: true,
                           mapToolbarEnabled: false,
                           myLocationEnabled: true,
                           onCameraIdle: () {
+                            print('update position called on camera idle');
                             locationController.updatePosition(
                                 _cameraPosition, true);
                           },

@@ -12,6 +12,7 @@ import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/pages/splash/splash_screen.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
 
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
-            theme: ThemeData(),
+            theme: ThemeData(
+                primaryColor: AppColors.mainColor, fontFamily: "Lato"),
             // home: SignInScreen(),
             //const HomePage(),
             //     MainFoodPage(),
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
             // part 2 6:12 -- screen of admin backend
             // part 2 6:18 -- api versioning
             // 9:31 auth back
-            // 2:24
+            // 1:21
             // Throughout the application process and in your career, keep blessing God. When things seem slow or are not working, keep blessing God. Bless God that you are the salt of the earth, bless God that you are the light of the world, bless God you are a city set on an hill that cannot be hidden. Psalm 34. Ensure you transfer this to your vn
           );
         });

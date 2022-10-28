@@ -24,10 +24,13 @@ class AppConstants {
   static const String USER_INFO_URI = 'api/user';
 
   static const String USER_ADDRESS = 'user_address';
-  static const String ADD_USER_ADDRESS = 'api/v1/customer/address/add';
-  static const String ADDRESS_LIST_URI = 'api/v1/customer/address/list';
+  static const String ADD_USER_ADDRESS = 'api/customer/add_address';
+  static const String ADDRESS_LIST_URI = 'api/customer/address_list';
 
-  static const String GEOCODE_URI = 'api/v1/config/geocode-api';
+  static const String GEOCODE_URI = 'api/config'; // using a mock response
+  static const String ZONE_URI = 'api/customer/get-zone-id'; // not working yet
+  static const String SEARCH_LOCATION_URI = 'api/places';
+  static const String PLACE_DETAILS_URI = 'api/places';
 
   static const String PHONE = '';
   static const String PASSWORD = '';

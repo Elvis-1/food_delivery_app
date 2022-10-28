@@ -20,6 +20,7 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
     if (_userLoggedIn) {
+      print('calledddd');
       Get.find<UserController>().getUserInfo();
     }
 

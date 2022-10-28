@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:food_delivery/data/api/api_client.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:geocoding/geocoding.dart';
@@ -19,7 +20,7 @@ class LocationRepo {
         '?lat=${latLng.latitude}&lng=${latLng.longitude}');
   }
 
-  String getUserAddress() {
+  String getUserAddressFromLocalStorage() {
     return sharedPreferences.getString(AppConstants.USER_ADDRESS) ?? "";
   }
 
@@ -36,5 +37,20 @@ class LocationRepo {
     apiClient.updateHeader(sharedPreferences.getString(AppConstants.TOKEN)!);
     return await sharedPreferences.setString(
         AppConstants.USER_ADDRESS, address);
+  }
+
+  Future<Response> getZone(String lat, String lng) async {
+    return await apiClient
+        .getData('${AppConstants.ZONE_URI}?lat=$lat&lng=$lng');
+  }
+
+  Future<Response> searchLocation(String text) async {
+    return await apiClient
+        .getData('${AppConstants.SEARCH_LOCATION_URI}?search_text=$text');
+  }
+
+  Future<Response> setLocation(String placeID) async {
+    return await apiClient
+        .getData('${AppConstants.PLACE_DETAILS_URI}?place_id=$placeID');
   }
 }

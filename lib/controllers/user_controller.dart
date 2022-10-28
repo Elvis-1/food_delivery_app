@@ -19,9 +19,9 @@ class UserController extends GetxController implements GetxService {
   UserInfoModel? get userInfoModel => _userInfoModel;
 
   Future<ResponseModel> getUserInfo() async {
-    _isLoading = true;
-    // _isLoading = true;
-    update();
+    _isLoading = false;
+    //_isLoading = true;
+    // update();
     Response response = await userRepo.getUserInfo();
     //print('response ' + response.body.toString());
     ResponseModel responseModel;
@@ -29,7 +29,8 @@ class UserController extends GetxController implements GetxService {
       // print('got here');
       _userInfoModel = UserInfoModel.fromJson(response.body);
 
-      // _isLoading = true;
+      _isLoading = false;
+      update();
       responseModel = ResponseModel(true, 'Successful');
     } else {
       responseModel = ResponseModel(false, response.statusText!);
