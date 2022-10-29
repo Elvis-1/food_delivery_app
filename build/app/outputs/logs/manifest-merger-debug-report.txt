@@ -11,6 +11,9 @@ MERGED from [:google_maps_flutter_android] C:\Users\elvis\Documents\elvis\flutte
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:geocoding] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_keyboard_visibility] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\flutter_keyboard_visibility\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:google_api_headers] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\google_api_headers\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:package_info_plus] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\package_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\elvis\.gradle\caches\transforms-2\files-2.1\ad201fac15a88598107ec645f351f5b4\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\elvis\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
@@ -141,6 +144,12 @@ MERGED from [:geocoding] C:\Users\elvis\Documents\elvis\flutter files\my_food_ap
 MERGED from [:geocoding] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_keyboard_visibility] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\flutter_keyboard_visibility\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_keyboard_visibility] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\flutter_keyboard_visibility\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_api_headers] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\google_api_headers\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_api_headers] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\google_api_headers\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:package_info_plus] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\package_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:package_info_plus] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\package_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] C:\Users\elvis\Documents\elvis\flutter files\my_food_app\food_delivery\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\elvis\.gradle\caches\transforms-2\files-2.1\ad201fac15a88598107ec645f351f5b4\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
